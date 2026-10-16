@@ -36,7 +36,27 @@ export default function ContactSection() {
       return
     }
 
-    // 전송 완료 시뮬레이션
+    // 관리자 대시보드 실시간 반영용 데이터 생성 및 저장
+    const newEntry = {
+      id: `req-${Date.now()}`,
+      name,
+      phone,
+      category: selectedCategory,
+      budget: budget || undefined,
+      message,
+      status: "pending" as const,
+      createdAt: new Date().toISOString().slice(0, 16).replace("T", " "),
+    }
+
+    try {
+      const existing = localStorage.getItem("thegrim_consultations")
+      const list = existing ? JSON.parse(existing) : []
+      list.unshift(newEntry)
+      localStorage.setItem("thegrim_consultations", JSON.stringify(list))
+    } catch {
+      // 스토리지 예외 무시
+    }
+
     setSubmitted(true)
   }
 

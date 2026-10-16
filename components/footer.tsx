@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="relative bg-zinc-950 border-t border-zinc-900 py-16 px-4 sm:px-6 lg:px-8 pb-24 sm:pb-16 text-zinc-400">
@@ -12,8 +14,12 @@ export default function Footer() {
             한국어 교육, 최신 웹·앱 풀스택 개발까지 다분야 전문성을 바탕으로
             최상의 솔루션을 제공합니다.
           </p>
-          <div className="text-[11px] text-zinc-400">
-            © 2026 THE GRIM. All rights reserved.
+          <div className="text-[11px] text-zinc-400 flex items-center gap-2">
+            <span>© 2026 THE GRIM. All rights reserved.</span>
+            <span>·</span>
+            <Link href="/admin" className="hover:text-zinc-300 transition-colors">
+              🔒 관리자
+            </Link>
           </div>
         </div>
 
