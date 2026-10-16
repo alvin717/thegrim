@@ -1,26 +1,62 @@
-# 프로젝트 기획서 (PRD): 멀티 페르소나 전문가 포트폴리오 & 외주 의뢰 웹사이트
+# 🏛️ 더 그림 (THE GRIM) 공식 프로젝트 기획 및 진행 보고서 (PRD)
 
-## 1. 프로젝트 개요 및 목표
-- 대상: 인테리어 디자인/시공 대표, 골프 세미프로 코치, 한국어 지도 강사, 웹·앱 풀스택 개발자
-- 목표: 방문자에게 첫인상부터 강렬한 인터랙션 경험을 선사하고, 4대 전문성을 명확히 전달하여 외주 의뢰 및 교육 상담으로 연결.
-- 아키텍처: Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui 구조.
+> **프로젝트 개요**: 다분야 전문가(공간 인테리어 디렉터 / 골프 세미프로 코치 / 공인 한국어 교육 지도사 / 웹·앱 풀스택 개발자)의 공식 포트폴리오 및 원스톱 외주 의뢰 & 레슨 상담 플랫폼
+> **공식 서비스 도메인**: [https://thegrim.vercel.app](https://thegrim.vercel.app)
+> **깃허브 저장소**: [https://github.com/alvin717/thegrim](https://github.com/alvin717/thegrim)
+> **최종 업데이트 일시**: 2026-10-17 00:40 (KST)
 
-## 2. 대문(Hero) 인터랙션 설계 (핵심)
-- Reference: 21st.dev "Scroll-Locked Video Hero" (`MetroHero`)
-- 위치: `@/components/ui/scroll-locked-video-hero.tsx`
-- 사용자 경험:
-  1. 진입 시 풀스크린 시네마틱 비디오와 메인 타이틀 배치.
-  2. 스크롤 시 화면이 일시적으로 고정되며 영상이 프레임 단위로 스크러빙(Scrubbing).
-  3. 진행률에 따라 인트로 텍스트가 블러/페이드아웃되고, 대표 슬로건("공간부터 디지털까지, 삶의 가치를 높입니다")이 페이드인.
-  4. 비디오 스크러빙 완료 시 자연스럽게 하단 본문(4대 전문분야 소개 섹션)으로 스크롤이 해제되어 연결됨.
+---
 
-## 3. 사이트 구조
-1. **Hero Section**: `MetroHero` 스크롤 인터랙션 비디오 배너
-2. **Core Services (4대 전문 영역)**:
-   - Interior & Construction (공간 기획 및 시공)
-   - Golf Coaching (세미프로 1:1 맞춤형 레슨)
-   - Korean Language Education (한국어 지도 강사)
-   - Web & App Development (웹/앱 제작 및 자동화)
-3. **Portfolio & Proof**: 성과 지표, 작업 갤러리 탭
-4. **Contact Form**: 외주 의뢰, 견적 문의, 1:1 상담 신청 폼
-5. **Footer**: 사업자 정보, SNS/전화 다이렉트 연결
+## 📌 1. 프로젝트 비전 및 4대 핵심 페르소나
+1. **공간 디자인 & 시공 (Interior & Construction)**: 라이프스타일과 동선을 분석한 3D 기획, 직영 책임 시공 및 상업/주거 리모델링
+2. **골프 세미프로 코칭 (Golf Coaching)**: 초고속 스윙 궤도 분석 기반 1:1 맞춤형 레슨 및 슬라이스 교정, 싱글 진입 코스
+3. **한국어 교육 지도 (Korean Education)**: 외국인 주재원·비즈니스 전문가 맞춤 강의 및 발음 억양 교정, 문화 연계 수업
+4. **웹·앱 풀스택 개발 (Web & App Development)**: Next.js 기반 초고속 반응형 웹 구축, 업무 자동화 툴 및 예약/고객 관리 시스템
+
+---
+
+## ✅ 2. 현재까지 100% 완료된 구현 상태 (Current Milestones)
+
+### 🚪 대문 (Scroll-Locked Video Metro Hero)
+- **파일 경로**: `components/ui/scroll-locked-video-hero.tsx`
+- **인터랙션**:
+  - 첫 화면에서 고화질 시네마틱 지하철 문 비디오 배치
+  - 마우스 휠을 아래로 내리면(↓) 비디오가 스크러빙되며 지하철 문이 양옆으로 열림
+  - 문이 100% 열린 후 자동으로 스크롤 잠금이 해제(Unlock)되어 하단 4대 전문 영역으로 매끄럽게 연결
+  - 최상단에서 마우스 휠을 위로 올리면(↑) 지하철 문이 다시 스르륵 닫히는 양방향 스크러빙 완비
+  - 원클릭 `[포트폴리오 내용 둘러보기 ↓]` 및 `[문 다시 닫기]` 버튼 제공
+
+### 💼 본문 핵심 공간 (Core Sections)
+- **상단 네비게이션**: `components/navbar.tsx` (반투명 블러 헤더, 4대 메뉴 링크, 고객 로그인/마이페이지 연동 버튼)
+- **4대 전문 영역 상세 소개**: `components/services-section.tsx` (탭 인터랙션으로 서비스 스펙 및 차별화 포인트 전환)
+- **실적 & 신뢰 지표**: `components/proof-section.tsx` (완공 80+건, 코칭 3,200+시간 등 카운터 및 카테고리별 갤러리)
+- **1:1 상담 신청 폼**: `components/contact-section.tsx` (분야 칩 선택, 연락처 입력, 관리자 대시보드 실시간 연동)
+- **모바일 플로팅 바 & 푸터**: `components/floating-contact-bar.tsx`, `components/footer.tsx` (모바일 하단 전화 바로걸기 `tel:` 탑재)
+
+### 🔐 수파베이스(Supabase) 인증 & 고객 마이페이지
+- **설정 파일**: `lib/supabase/client.ts`, `lib/supabase/server.ts`, `.env.local`
+- **고객 로그인 페이지**: `app/login/page.tsx` (카카오톡 3초 로그인, 구글 로그인, 이메일 로그인/회원가입 탭)
+- **고객 마이페이지**: `app/mypage/page.tsx` (내 의뢰 접수 현황, 골프 레슨 스윙 피드백 과제실, 한국어 교재/음원 다운로드실)
+- **연동 프로젝트**: `https://afvvduherpkqorowvqct.supabase.co` 연동 완료
+
+### 👑 대표님 전용 관리자 대시보드 (Admin Dashboard)
+- **접속 주소**: `/admin` (홈페이지 푸터 하단 `🔒 관리자` 링크)
+- **보안 잠금**: PIN 비밀번호 인증 (기본: `1234`)
+- **주요 기능**:
+  - 실시간 상담 접수 목록 확인
+  - 원클릭 고객 다이렉트 전화걸기
+  - 상담 상태 변경 (`[대기]` ↔ `[진행중]` ↔ `[완료]`)
+  - 원클릭 엑셀(CSV) 파일 다운로드
+
+---
+
+## 🔮 3. 향후 확장 로드맵 (Next Steps)
+1. **단독 상세 페이지(멀티페이지) 확장**:
+   - `/interior` (공간 시공 전/후 사진 갤러리 및 상세 견적 안내)
+   - `/golf` (1:1 레슨 커리큘럼, 분석 장비 소개, 수강료 가이드)
+   - `/korean` (맞춤형 커리큘럼 및 교재 샘플)
+   - `/dev` (제작된 웹/앱 포트폴리오 데모)
+2. **콘텐츠 실사화**:
+   - 대표님 보유 실제 포트폴리오 사진 교체
+   - 실제 연락처(`010-XXXX-XXXX`) 및 사업자 정보 등록
+3. **관리자 PIN 변경**: 대표님만의 비밀번호로 업데이트
