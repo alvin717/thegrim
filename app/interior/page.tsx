@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import FloatingContactBar from "@/components/floating-contact-bar"
 import ContactSection from "@/components/contact-section"
+import InteriorPortfolioSection from "@/components/interior-portfolio-section"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -11,51 +12,6 @@ export const metadata: Metadata = {
     "아파트 주거 공간부터 상업 쇼룸까지, 라이프스타일 분석 기반 3D 시각화와 책임 직영 시공으로 완성하는 하이엔드 인테리어",
 }
 
-// 시공 포트폴리오 사례 데이터
-const PORTFOLIO_CASES = [
-  {
-    title: "성수동 복합 문화 쇼룸 & 오피스",
-    category: "상업 공간 브랜딩",
-    area: "65평 (214㎡)",
-    period: "4주 소요",
-    concept: "모던 인더스트리얼 & 웜 미니멀리즘",
-    points: [
-      "노출 콘크리트와 따뜻한 원목 집기의 감각적 조화",
-      "브랜드 쇼룸과 업무 공간을 유연하게 분리하는 유리 파티션",
-      "3D 정밀 조도 설계를 통한 시간대별 조명 연출",
-    ],
-    beforeAfter: "노후 창고 공간 → 하이엔드 복합 쇼룸 변신",
-    badge: "상업 시공 우수작",
-  },
-  {
-    title: "한남동 하이엔드 주거 아파트",
-    category: "프리미엄 주거 리모델링",
-    area: "48평 (158㎡)",
-    period: "5주 소요",
-    concept: "호텔식 구조 변경 & 히든 도어 인테리어",
-    points: [
-      "대형 아일랜드 대면형 주방 및 히든 팬트리 시공",
-      "무몰딩·무문선·라인 조명 마감으로 극대화된 공간감",
-      "친환경 이태리 포세린 타일 및 수입 원목마루 적용",
-    ],
-    beforeAfter: "20년 된 칙칙한 체리색 마감 → 모던 호텔 스위트룸",
-    badge: "주거 리모델링 베스트",
-  },
-  {
-    title: "판교 IT 스타트업 라운지 & 미팅룸",
-    category: "오피스 공간 기획",
-    area: "82평 (271㎡)",
-    period: "3.5주 소요",
-    concept: "애자일 워크스페이스 & 방음 폰부스",
-    points: [
-      "직원 몰입도를 높이는 인체공학적 동선 분리",
-      "음향 흡음재 적용 화상회의 전용 폰부스 4실 구축",
-      "자유로운 소통이 가능한 카페형 타운홀 라운지",
-    ],
-    beforeAfter: "칸막이 사무실 → 창의적 오픈 워크스페이스",
-    badge: "업무 생산성 극대화",
-  },
-]
 
 // 5단계 시공 프로세스
 const PROCESS_STEPS = [
@@ -157,69 +113,8 @@ export default function InteriorPage() {
           </div>
         </section>
 
-        {/* 2. Before & After 및 대표 포트폴리오 섹션 */}
-        <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
-              Signature Works
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-              시공 사례 및 공간 갤러리
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base font-medium">
-              클라이언트의 취향과 상업적 목적에 최적화된 대표 완공 프로젝트입니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {PORTFOLIO_CASES.map((item, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-                      {item.badge}
-                    </span>
-                    <span className="text-xs text-slate-500 font-mono font-semibold">{item.area}</span>
-                  </div>
-
-                  <div>
-                    <div className="text-xs text-slate-500 font-semibold mb-1">{item.category}</div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
-                      {item.title}
-                    </h3>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 font-medium">
-                    <span className="font-bold text-sky-700">💡 변화 핵심: </span>
-                    {item.beforeAfter}
-                  </div>
-
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      시공 디테일
-                    </div>
-                    <ul className="space-y-1.5">
-                      {item.points.map((p, pIdx) => (
-                        <li key={pIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
-                          <span className="text-sky-600 font-bold">·</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-                  <span>공사 기간: {item.period}</span>
-                  <span className="text-slate-800 font-bold">{item.concept}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* 2. 시공 사례 & 공간 갤러리 (사진 교체/업로드 및 카카오/네이버 지도 길찾기 기능 포함) */}
+        <InteriorPortfolioSection />
 
         {/* 3. 5단계 시공 프로세스 안내 */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 bg-white/70 backdrop-blur-md rounded-3xl my-10 shadow-sm border">
