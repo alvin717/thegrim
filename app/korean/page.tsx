@@ -100,18 +100,14 @@ export default function KoreanPage() {
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
               href="#courses"
-              className="chrome-capsule-btn group"
+              className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-200 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
             >
-              <span className="chrome-sparkle-left" />
-              <span className="chrome-sparkle-right" />
-              <span className="chrome-capsule-inner px-7 py-3 text-sm">
-                <span>교육 과정 둘러보기</span>
-                <span className="text-zinc-400 group-hover:translate-y-0.5 transition-transform font-bold">↓</span>
-              </span>
+              <span>교육 과정 둘러보기</span>
+              <span>↓</span>
             </a>
             <a
               href="#contact"
-              className="px-6 py-3.5 rounded-full bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[46px] flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[44px] flex items-center gap-2"
             >
               <span>무료 레벨 테스트 & 상담</span>
               <span>→</span>
