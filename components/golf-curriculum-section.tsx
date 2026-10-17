@@ -40,14 +40,14 @@ const INITIAL_PROGRAMS: GolfProgram[] = [
     outcome: "8주 후 첫 머리 올리기(정규 홀 라운드) 완벽 준비",
     proVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      url: "/videos/golf/iron_swing.mp4",
       thumbnail: "/images/golf/lesson_beginner.jpg",
       title: "기초 그립 & 어드레스 척추각 교정 직강",
       desc: "초보자가 가장 많이 하는 손목 캐스팅 방지 및 견고한 척추각 유지 드릴",
     },
     memberVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      url: "/videos/golf/member_iron.mp4",
       thumbnail: "/images/golf/lesson_beginner.jpg",
       title: "20대 입문 회원 4주 차 7번 아이언 풀스윙",
       desc: "헛스윙과 탑볼에서 벗어나 완벽한 피니시 밸런스를 잡아가는 과정",
@@ -68,14 +68,14 @@ const INITIAL_PROGRAMS: GolfProgram[] = [
     outcome: "드라이버 비거리 평균 20~30m 증가 & 페어웨이 안착률 급상승",
     proVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4",
+      url: "/videos/golf/driver_swing.mp4",
       thumbnail: "/images/golf/lesson_slice.jpg",
       title: "인-아웃 샬로잉 & 로테이션 비거리 레슨",
       desc: "엎어 치는 궤도를 즉시 고쳐주는 벽 드릴 및 지면 반발력 힙턴 메커니즘",
     },
     memberVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      url: "/videos/golf/member_driver.mp4",
       thumbnail: "/images/golf/lesson_slice.jpg",
       title: "40대 남성 회원 슬라이스 탈출 & 비거리 +35m",
       desc: "캐스팅 교정 후 트랙맨 볼스피드 61m/s → 68m/s 향상",
@@ -96,14 +96,14 @@ const INITIAL_PROGRAMS: GolfProgram[] = [
     outcome: "스코어를 잃지 않는 단단한 위기관리 능력 및 라베(라이프 베스트) 달성",
     proVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+      url: "/videos/golf/full_swing.mp4",
       thumbnail: "/images/golf/lesson_shortgame.jpg",
       title: "스핀량 극대화 56도 웨지 피치샷 & 벙커샷",
       desc: "그린에 런 없이 툭 떨어지는 바운스 활용 어프로치 시범",
     },
     memberVideo: {
       type: "sample",
-      url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+      url: "/videos/golf/member_field.mp4",
       thumbnail: "/images/golf/lesson_shortgame.jpg",
       title: "50대 회원 필드 동반 레슨 벙커 탈출 원샷",
       desc: "그린 주변 벙커 공포증 극복 후 홀컵 1.5m 원샷 붙이기 성공",
@@ -214,21 +214,40 @@ function GolfVideoCardPlayer({
   onExpand: () => void
 }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [hasError, setHasError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const handleTogglePlay = (e: React.MouseEvent) => {
+  // video URL이 변경될 때 상태 초기화
+  useEffect(() => {
+    setIsPlaying(false)
+    setHasError(false)
+    if (videoRef.current) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+    }
+  }, [video.url])
+
+  const handleTogglePlay = async (e: React.MouseEvent) => {
     e.stopPropagation()
     if (!videoRef.current) return
 
     if (videoRef.current.paused) {
-      videoRef.current
-        .play()
-        .then(() => {
-          setIsPlaying(true)
-        })
-        .catch((err) => {
-          console.warn("비디오 재생 오류:", err)
-        })
+      try {
+        await videoRef.current.play()
+        setIsPlaying(true)
+      } catch (err) {
+        console.warn("비디오 재생 오류 (음소거 모드로 재시도):", err)
+        try {
+          if (videoRef.current) {
+            videoRef.current.muted = true
+            await videoRef.current.play()
+            setIsPlaying(true)
+          }
+        } catch (retryErr) {
+          console.error("비디오 최종 재생 실패:", retryErr)
+          setHasError(true)
+        }
+      }
     } else {
       videoRef.current.pause()
       setIsPlaying(false)
@@ -254,15 +273,17 @@ function GolfVideoCardPlayer({
             controls={isPlaying}
             playsInline
             preload="metadata"
+            loop
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onEnded={() => setIsPlaying(false)}
+            onError={() => setHasError(true)}
             onClick={handleTogglePlay}
             className="w-full h-full object-cover"
           />
 
           {/* 중앙 대형 시네마틱 재생 버튼 오버레이 */}
-          {!isPlaying && (
+          {!isPlaying && !hasError && (
             <div
               onClick={handleTogglePlay}
               className="absolute inset-0 bg-black/45 hover:bg-black/25 backdrop-blur-[1px] transition-all flex flex-col items-center justify-center gap-2 group/play z-10"
@@ -273,6 +294,31 @@ function GolfVideoCardPlayer({
               <span className="px-3 py-1 rounded-full bg-black/75 text-white text-[11px] font-bold tracking-wide drop-shadow backdrop-blur-sm border border-white/20">
                 클릭하여 스윙 영상 재생 ▶
               </span>
+            </div>
+          )}
+
+          {/* 비디오 에러 시 복구 안내 */}
+          {hasError && (
+            <div
+              onClick={handleTogglePlay}
+              className="absolute inset-0 bg-black/85 flex flex-col items-center justify-center p-4 text-center z-10"
+            >
+              <span className="text-amber-400 text-2xl mb-1">⚠️</span>
+              <p className="text-xs text-white font-bold mb-2">영상을 재생할 수 없습니다.</p>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setHasError(false)
+                  if (videoRef.current) {
+                    videoRef.current.load()
+                    videoRef.current.play().catch(() => {})
+                  }
+                }}
+                className="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold"
+              >
+                다시 재생 시도
+              </button>
             </div>
           )}
         </>
@@ -333,26 +379,39 @@ export default function GolfCurriculumSection() {
   useEffect(() => {
     async function loadSavedData() {
       try {
-        const savedMeta = localStorage.getItem("thegrim_golf_curriculum_meta_v1")
+        const savedMeta =
+          localStorage.getItem("thegrim_golf_curriculum_meta_v2") ||
+          localStorage.getItem("thegrim_golf_curriculum_meta_v1")
         if (savedMeta) {
           const parsed = JSON.parse(savedMeta)
           // DB에서 Blob 불러와서 blob URL 생성
           const updatedPrograms = await Promise.all(
             parsed.map(async (prog: GolfProgram) => {
-              // 프로 영상 복원
+              const defaultProg = INITIAL_PROGRAMS.find((p) => p.id === prog.id)
+
+              // 프로 영상 복원 및 구버전 403 외부 URL 자동 교체
               let proUrl = prog.proVideo.url
-              if (prog.proVideo.type === "upload") {
+              if (!proUrl || proUrl.includes("commondatastorage.googleapis.com")) {
+                proUrl = defaultProg?.proVideo.url || "/videos/golf/iron_swing.mp4"
+              } else if (prog.proVideo.type === "upload") {
                 const blob = await getVideoFromDB(`golf_video_${prog.id}_pro`)
                 if (blob) {
                   proUrl = URL.createObjectURL(blob)
+                } else {
+                  proUrl = defaultProg?.proVideo.url || "/videos/golf/iron_swing.mp4"
                 }
               }
-              // 회원 영상 복원
+
+              // 회원 영상 복원 및 구버전 403 외부 URL 자동 교체
               let memUrl = prog.memberVideo.url
-              if (prog.memberVideo.type === "upload") {
+              if (!memUrl || memUrl.includes("commondatastorage.googleapis.com")) {
+                memUrl = defaultProg?.memberVideo.url || "/videos/golf/member_iron.mp4"
+              } else if (prog.memberVideo.type === "upload") {
                 const blob = await getVideoFromDB(`golf_video_${prog.id}_member`)
                 if (blob) {
                   memUrl = URL.createObjectURL(blob)
+                } else {
+                  memUrl = defaultProg?.memberVideo.url || "/videos/golf/member_iron.mp4"
                 }
               }
 
@@ -364,6 +423,8 @@ export default function GolfCurriculumSection() {
             })
           )
           setPrograms(updatedPrograms)
+          // 최신 v2 저장소로 업데이트
+          localStorage.setItem("thegrim_golf_curriculum_meta_v2", JSON.stringify(updatedPrograms))
         }
       } catch (e) {
         console.error("데이터 복원 실패", e)
@@ -484,7 +545,7 @@ export default function GolfCurriculumSection() {
           url: p.memberVideo.type === "upload" ? "" : p.memberVideo.url,
         },
       }))
-      localStorage.setItem("thegrim_golf_curriculum_meta_v1", JSON.stringify(metaOnly))
+      localStorage.setItem("thegrim_golf_curriculum_meta_v2", JSON.stringify(metaOnly))
     } catch (e) {
       console.warn("로컬 저장 실패", e)
     }
@@ -518,7 +579,7 @@ export default function GolfCurriculumSection() {
     setPrograms(updated)
 
     try {
-      localStorage.setItem("thegrim_golf_curriculum_meta_v1", JSON.stringify(updated))
+      localStorage.setItem("thegrim_golf_curriculum_meta_v2", JSON.stringify(updated))
     } catch {}
 
     alert("기본 영상으로 복원되었습니다.")
@@ -604,6 +665,7 @@ export default function GolfCurriculumSection() {
 
                   {/* 비디오 뷰어 영역 (원클릭 대형 재생 버튼 및 즉시 플레이 지원) */}
                   <GolfVideoCardPlayer
+                    key={`${program.id}_${currentSlot}_${currentVideo.url}`}
                     video={currentVideo}
                     programTitle={program.title}
                     isMember={currentSlot === "member"}
