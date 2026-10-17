@@ -2,9 +2,13 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 
 export default function Navbar() {
+  const pathname = usePathname()
+  const isHomePage = pathname === "/"
+
   const [user, setUser] = useState<{ email?: string } | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -24,11 +28,13 @@ export default function Navbar() {
       }
     )
 
-    // 스크롤 감지하여 상단 바 배경색 변경
+    // 스크롤 감지 (대문 영역을 지나 본문으로 진입했는지 감지)
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 150)
     }
-    window.addEventListener("scroll", handleScroll)
+    // 초기 로드 시 스크롤 상태 반영
+    handleScroll()
+    window.addEventListener("scroll", handleScroll, { passive: true })
 
     return () => {
       authListener.subscription.unsubscribe()
@@ -43,11 +49,19 @@ export default function Navbar() {
     window.location.href = "/"
   }
 
+  // 메인 대문 화면에서는 문을 열고 본문으로 스크롤했을 때만 표시하고,
+  // 독립 멀티페이지(/interior, /golf 등)에서는 항상 표시
+  const isVisible = !isHomePage || isScrolled
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-out transform ${
+        isVisible
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "-translate-y-full opacity-0 pointer-events-none"
+      } ${
         isScrolled
-          ? "bg-[#05070d]/85 backdrop-blur-md border-b border-zinc-800/80 py-3"
+          ? "bg-[#05070d]/90 backdrop-blur-md border-b border-zinc-800/80 py-3 shadow-2xl"
           : "bg-transparent py-5"
       }`}
     >
