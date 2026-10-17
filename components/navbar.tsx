@@ -49,6 +49,12 @@ export default function Navbar() {
     window.location.href = "/"
   }
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    // 대문(첫 화면 히어로 지하철 문)으로 즉시 이동
+    window.location.href = "/"
+  }
+
   // 메인 대문 화면에서는 문을 열고 본문으로 스크롤했을 때만 표시하고,
   // 독립 멀티페이지(/interior, /golf 등)에서는 항상 표시
   const isVisible = !isHomePage || isScrolled
@@ -66,12 +72,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* 브랜드 로고 */}
+        {/* 브랜드 로고 (클릭 시 언제든 대문 첫 화면으로 즉시 이동) */}
         <Link
           href="/"
-          className="text-lg sm:text-xl font-black text-slate-900 tracking-wider flex items-center gap-2 group"
+          onClick={handleLogoClick}
+          className="text-lg sm:text-xl font-black text-slate-900 tracking-wider flex items-center gap-2 group min-h-[44px] py-1 px-1 cursor-pointer select-none"
+          aria-label="더 그림 대문(홈)으로 이동"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-sky-600 group-hover:scale-125 transition-transform" />
+          <span className="w-2.5 h-2.5 rounded-full bg-sky-600 group-hover:scale-125 transition-transform shrink-0" />
           <span>THE GRIM</span>
         </Link>
 
