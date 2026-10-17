@@ -201,6 +201,106 @@ async function deleteVideoFromDB(key: string): Promise<void> {
   }
 }
 
+// 개별 카드 전용 직관적 비디오 플레이어 (중앙 대형 재생 버튼 및 원클릭 재생)
+function GolfVideoCardPlayer({
+  video,
+  programTitle,
+  isMember,
+  onExpand,
+}: {
+  video: VideoItem
+  programTitle: string
+  isMember: boolean
+  onExpand: () => void
+}) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleTogglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (!videoRef.current) return
+
+    if (videoRef.current.paused) {
+      videoRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true)
+        })
+        .catch((err) => {
+          console.warn("비디오 재생 오류:", err)
+        })
+    } else {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    }
+  }
+
+  return (
+    <div className="relative aspect-video bg-black overflow-hidden group/vid cursor-pointer">
+      {video.type === "youtube" ? (
+        <iframe
+          src={video.url}
+          title={video.title}
+          className="w-full h-full border-0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ) : (
+        <>
+          <video
+            ref={videoRef}
+            src={video.url}
+            poster={video.thumbnail}
+            controls={isPlaying}
+            playsInline
+            preload="metadata"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onEnded={() => setIsPlaying(false)}
+            onClick={handleTogglePlay}
+            className="w-full h-full object-cover"
+          />
+
+          {/* 중앙 대형 시네마틱 재생 버튼 오버레이 */}
+          {!isPlaying && (
+            <div
+              onClick={handleTogglePlay}
+              className="absolute inset-0 bg-black/45 hover:bg-black/25 backdrop-blur-[1px] transition-all flex flex-col items-center justify-center gap-2 group/play z-10"
+            >
+              <div className="w-16 h-16 rounded-full bg-sky-600/90 hover:bg-sky-500 text-white shadow-2xl flex items-center justify-center pl-1 group-hover/play:scale-110 transition-transform ring-4 ring-white/30">
+                <span className="text-2xl">▶</span>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-black/75 text-white text-[11px] font-bold tracking-wide drop-shadow backdrop-blur-sm border border-white/20">
+                클릭하여 스윙 영상 재생 ▶
+              </span>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* 우측 상단 빠른 전체화면/팝업 재생 버튼 */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation()
+          onExpand()
+        }}
+        title="큰 화면으로 보기"
+        className="absolute top-2 right-2 px-2.5 py-1 rounded-md bg-black/70 hover:bg-black/90 text-white text-[11px] font-bold backdrop-blur-sm transition-all flex items-center gap-1 z-20"
+      >
+        <span>🔍 확대 보기</span>
+      </button>
+
+      {/* 회원 영상일 경우 Before & After 배지 */}
+      {isMember && video.memberBeforeAfter && (
+        <div className="absolute bottom-2 left-2 right-2 px-2 py-1 bg-black/75 backdrop-blur-sm rounded text-[10px] text-emerald-300 font-bold border border-emerald-500/30 truncate z-10 pointer-events-none">
+          💡 {video.memberBeforeAfter}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function GolfCurriculumSection() {
   const [programs, setPrograms] = useState<GolfProgram[]>(INITIAL_PROGRAMS)
   // 각 카드별 활성화된 비디오 탭 ("pro" | "member")
@@ -502,50 +602,19 @@ export default function GolfCurriculumSection() {
                     </button>
                   </div>
 
-                  {/* 비디오 뷰어 영역 */}
-                  <div className="relative aspect-video bg-black overflow-hidden group/vid">
-                    {currentVideo.type === "youtube" ? (
-                      <iframe
-                        src={currentVideo.url}
-                        title={currentVideo.title}
-                        className="w-full h-full border-0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <video
-                        src={currentVideo.url}
-                        poster={currentVideo.thumbnail}
-                        controls
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-
-                    {/* 우측 상단 빠른 전체화면/팝업 재생 버튼 */}
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setPlayingVideo({
-                          item: currentVideo,
-                          programTitle: program.title,
-                          isMember: currentSlot === "member",
-                        })
-                      }
-                      title="큰 화면으로 보기"
-                      className="absolute top-2 right-2 px-2.5 py-1 rounded-md bg-black/70 hover:bg-black/90 text-white text-[11px] font-bold backdrop-blur-sm transition-all flex items-center gap-1 z-10"
-                    >
-                      <span>🔍 확대 보기</span>
-                    </button>
-
-                    {/* 회원 영상일 경우 Before & After 배지 */}
-                    {currentSlot === "member" && currentVideo.memberBeforeAfter && (
-                      <div className="absolute bottom-2 left-2 right-2 px-2 py-1 bg-black/75 backdrop-blur-sm rounded text-[10px] text-emerald-300 font-bold border border-emerald-500/30 truncate z-10 pointer-events-none">
-                        💡 {currentVideo.memberBeforeAfter}
-                      </div>
-                    )}
-                  </div>
+                  {/* 비디오 뷰어 영역 (원클릭 대형 재생 버튼 및 즉시 플레이 지원) */}
+                  <GolfVideoCardPlayer
+                    video={currentVideo}
+                    programTitle={program.title}
+                    isMember={currentSlot === "member"}
+                    onExpand={() =>
+                      setPlayingVideo({
+                        item: currentVideo,
+                        programTitle: program.title,
+                        isMember: currentSlot === "member",
+                      })
+                    }
+                  />
 
                   {/* 영상 설명 및 [영상 올리기·수정] 버튼 바 */}
                   <div className="p-3 bg-slate-900/90 text-white flex items-center justify-between gap-2 border-t border-slate-800">
