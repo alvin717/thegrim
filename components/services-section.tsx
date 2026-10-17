@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 
 // 4대 전문 영역 데이터 정의
 export interface ServiceItem {
@@ -210,15 +211,31 @@ export default function ServicesSection() {
             </div>
 
             {/* 버튼 및 실적 수치 */}
-            <div className="pt-4 flex flex-wrap items-center gap-6">
+            <div className="pt-4 flex flex-wrap items-center gap-4">
+              <Link
+                href={
+                  activeService.id === "interior"
+                    ? "/interior"
+                    : activeService.id === "golf"
+                    ? "/golf"
+                    : activeService.id === "korean"
+                    ? "/korean"
+                    : "/dev"
+                }
+                className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-extrabold text-sm hover:bg-zinc-200 transition-all shadow-md active:scale-[0.98] min-h-[44px] flex items-center gap-2 group"
+              >
+                <span>{activeService.category.split("&")[0].trim()} 전용관 바로가기</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+
               <button
                 onClick={() => handleConsultClick(activeService.category)}
-                className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-200 transition-all shadow-md active:scale-[0.98] min-h-[44px]"
+                className="px-5 py-3.5 rounded-xl bg-zinc-800 hover:bg-zinc-750 text-zinc-200 font-bold text-sm border border-zinc-700 transition-all min-h-[44px]"
               >
-                이 분야 상담 / 의뢰하기 →
+                빠른 상담 신청
               </button>
 
-              <div className="flex items-baseline gap-2 border-l border-zinc-800 pl-6">
+              <div className="flex items-baseline gap-2 border-l border-zinc-800 pl-4 sm:pl-6 my-1">
                 <span className="text-xs text-zinc-400">{activeService.stats.label}</span>
                 <span className="text-2xl font-extrabold text-white">
                   {activeService.stats.value}

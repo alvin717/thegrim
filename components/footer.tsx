@@ -26,12 +26,28 @@ export default function Footer() {
         {/* 우측 4대 전문 서비스 및 바로가기 */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-xs">
           <div className="space-y-2.5">
-            <div className="font-bold text-zinc-200">전문 분야</div>
+            <div className="font-bold text-zinc-200">전문 분야 전용관</div>
             <ul className="space-y-1.5 text-zinc-400">
-              <li>공간 기획 및 직영 시공</li>
-              <li>골프 세미프로 1:1 레슨</li>
-              <li>공인 한국어 교육 지도</li>
-              <li>풀스택 웹·앱 개발</li>
+              <li>
+                <Link href="/interior" className="hover:text-amber-400 transition-colors">
+                  🏛️ 공간 디자인 & 시공
+                </Link>
+              </li>
+              <li>
+                <Link href="/golf" className="hover:text-emerald-400 transition-colors">
+                  ⛳ 골프 1:1 맞춤 레슨
+                </Link>
+              </li>
+              <li>
+                <Link href="/korean" className="hover:text-blue-400 transition-colors">
+                  🇰🇷 공인 한국어 교육
+                </Link>
+              </li>
+              <li>
+                <Link href="/dev" className="hover:text-purple-400 transition-colors">
+                  💻 풀스택 웹·앱 개발
+                </Link>
+              </li>
             </ul>
           </div>
 
