@@ -144,11 +144,15 @@ export default function MetroHero({
 
     // 휠/터치 델타값 처리 함수
     function addDelta(deltaY: number): boolean {
-      // 1. 문이 열리는 중 (아래로 휠)
+      // 1. 문이 열리는 중 (아래로 휠/터치)
       if (deltaY > 0) {
         if (targetProgress < 0.98) {
           targetProgress = clamp(targetProgress + deltaY / scrubDistance, 0, 1)
           if (targetProgress > 0.001) hasStartedScrolling = true
+          if (targetProgress >= 0.98) {
+            targetProgress = 1
+            releaseLock()
+          }
           return true // 문이 열리는 동안에는 스크롤 가로채기
         } else {
           // 문이 100% 열림 -> 스크롤 락 즉시 해제하여 본문으로 부드럽게 스크롤 허용!
@@ -160,7 +164,7 @@ export default function MetroHero({
       }
 
       // 2. 문이 닫히는 중 (위로 휠): 페이지 맨 위(scrollY === 0)에 완전히 도달했을 때만 작동
-      if (deltaY < -15) {
+      if (deltaY < -20) {
         if (window.scrollY <= 5) {
           if (!locked && targetProgress >= 0.95) {
             engageLock()
@@ -177,9 +181,16 @@ export default function MetroHero({
 
     const onWheel = (e: WheelEvent) => {
       // 최상단이거나 문이 아직 완전히 열리지 않았을 때 비디오 스크러빙
-      if (window.scrollY <= 5 || targetProgress < 0.98) {
+      if (targetProgress < 0.98) {
         if (addDelta(e.deltaY)) {
           e.preventDefault()
+        }
+      } else {
+        // 문이 열린 후에는 본문 스크롤 허용 (최상단에서 위로 휠 굴릴 때만 닫기)
+        if (window.scrollY <= 5 && e.deltaY < -20) {
+          if (addDelta(e.deltaY)) {
+            e.preventDefault()
+          }
         }
       }
     }
@@ -192,9 +203,27 @@ export default function MetroHero({
       const deltaY = touchStartY - y
       touchStartY = y
 
-      if (window.scrollY <= 5 || targetProgress < 0.98) {
-        if (addDelta(deltaY)) {
-          e.preventDefault()
+      // 모바일 스마트폰 터치 감도 안정화 (0.4배 적용):
+      // 스마트폰에서는 손가락 스와이프 한 번에 수백 px 델타가 전달되어
+      // 대문이 너무 순식간에 열리는 현상을 방지하고 고급스러운 개폐 속도 유지
+      const touchDelta = deltaY * 0.4
+
+      if (targetProgress < 0.98) {
+        // 문이 열리는 도중에는 터치로 비디오 스크러빙하며 페이지 스크롤 차단
+        if (addDelta(touchDelta)) {
+          if (e.cancelable) {
+            e.preventDefault()
+          }
+        }
+      } else {
+        // 문이 완전히 열린 후에는 페이지 본문(섹션들)으로 자유롭게 스크롤 내려갈 수 있도록 허용!
+        // 단, 최상단(scrollY <= 5)에서 명확하게 아래로 끌어내리는 제스처(deltaY < -40)일 때만 문 닫기 동작
+        if (window.scrollY <= 5 && deltaY < -40) {
+          if (addDelta(touchDelta)) {
+            if (e.cancelable) {
+              e.preventDefault()
+            }
+          }
         }
       }
     }
@@ -210,14 +239,6 @@ export default function MetroHero({
     window.addEventListener("touchstart", onTouchStart, { passive: true })
     window.addEventListener("touchmove", onTouchMove, { passive: false })
     window.addEventListener("scroll", onScroll, { passive: true })
-    section.addEventListener("touchstart", onTouchStart, {
-      passive: true,
-      capture: true,
-    })
-    section.addEventListener("touchmove", onTouchMove, {
-      passive: false,
-      capture: true,
-    })
 
     function frame() {
       currentProgress += (targetProgress - currentProgress) * 0.18
@@ -244,7 +265,7 @@ export default function MetroHero({
         taglineRef.current.style.opacity = String(t)
         taglineRef.current.style.transform = `translateY(${(1 - t) * 20}px) scale(${0.97 + t * 0.03})`
         taglineRef.current.style.filter = `blur(${(1 - t) * 8}px)`
-        taglineRef.current.style.pointerEvents = t > 0.5 ? "auto" : "none"
+        // 전체 화면 오버레이가 터치를 가로막지 않도록 부모 컨테이너는 none 유지, 내부 버튼만 pointer-events-auto
       }
       if (progressBarRef.current) {
         progressBarRef.current.style.transform = `scaleX(${currentProgress})`
@@ -276,8 +297,6 @@ export default function MetroHero({
       window.removeEventListener("touchstart", onTouchStart)
       window.removeEventListener("touchmove", onTouchMove)
       window.removeEventListener("scroll", onScroll)
-      section.removeEventListener("touchstart", onTouchStart, true)
-      section.removeEventListener("touchmove", onTouchMove, true)
       cancelAnimationFrame(rafId)
       releaseLock()
     }
@@ -320,7 +339,7 @@ export default function MetroHero({
         width: "100%",
         overflow: "hidden",
         background: COL_BG,
-        touchAction: "none",
+        touchAction: "pan-y",
         ...style,
       }}
     >
@@ -340,7 +359,6 @@ export default function MetroHero({
           transformOrigin: "center center",
           willChange: "transform",
           transition: "opacity 0.6s ease",
-          touchAction: "none",
           pointerEvents: "none",
         }}
       />
@@ -432,7 +450,7 @@ export default function MetroHero({
               </span>
             </button>
             <span className="text-[11px] text-zinc-400 font-mono tracking-tight">
-              (마우스 휠을 내리시거나 버튼을 누르면 본문으로 이어집니다)
+              (아래로 스크롤하시거나 버튼을 누르면 본문으로 이어집니다)
             </span>
           </div>
         </div>
