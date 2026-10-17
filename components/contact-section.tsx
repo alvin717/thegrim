@@ -84,22 +84,22 @@ export default function ContactSection() {
         </p>
       </div>
 
-      <div className="relative rounded-3xl bg-zinc-900/90 border border-zinc-800 p-6 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
+      <div className="relative rounded-3xl bg-[#26372d]/95 border border-[#3d5345] p-6 sm:p-10 lg:p-12 shadow-2xl backdrop-blur-xl">
         {submitted ? (
           <div className="py-12 text-center space-y-6">
-            <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+            <div className="w-16 h-16 bg-[#344e41] text-[#dad7cd] border border-[#588157] rounded-full flex items-center justify-center mx-auto text-2xl font-bold shadow-md">
               ✓
             </div>
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-white">상담 신청이 정상 접수되었습니다!</h3>
-              <p className="text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">
-                남겨주신 연락처(<span className="text-white font-mono">{phone}</span>)로 요청하신{" "}
-                <span className="text-white font-medium">[{selectedCategory}]</span> 관련 상담 내용을 검토한 후 빠르게 연락드리겠습니다.
+              <h3 className="text-2xl font-bold text-[#f4f2ee]">상담 신청이 정상 접수되었습니다!</h3>
+              <p className="text-[#dad7cd] text-sm max-w-md mx-auto leading-relaxed">
+                남겨주신 연락처(<span className="text-[#f4f2ee] font-mono font-bold">{phone}</span>)로 요청하신{" "}
+                <span className="text-[#f4f2ee] font-semibold">[{selectedCategory}]</span> 관련 상담 내용을 검토한 후 빠르게 연락드리겠습니다.
               </p>
             </div>
             <button
               onClick={handleReset}
-              className="px-6 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition-all min-h-[44px]"
+              className="px-6 py-3 rounded-xl bg-[#344e41] hover:bg-[#3d594b] text-[#dad7cd] text-xs font-bold transition-all min-h-[44px] border border-[#588157]"
             >
               추가 문의 작성하기
             </button>
@@ -108,8 +108,8 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* 1. 의뢰 분야 선택 칩 */}
             <div className="space-y-3">
-              <label className="block text-xs font-bold text-zinc-300 uppercase tracking-wider">
-                1. 의뢰 / 상담 분야 선택 <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-bold text-[#dad7cd] uppercase tracking-wider">
+                1. 의뢰 / 상담 분야 선택 <span className="text-[#a3b18a]">*</span>
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {[
@@ -126,8 +126,8 @@ export default function ContactSection() {
                       onClick={() => setSelectedCategory(category)}
                       className={`py-3 px-3 rounded-xl text-xs sm:text-sm font-semibold transition-all min-h-[44px] flex items-center justify-center text-center ${
                         isSelected
-                          ? "bg-white text-zinc-950 font-bold shadow-md ring-2 ring-white/20"
-                          : "bg-zinc-850/80 text-zinc-400 hover:text-white border border-zinc-800"
+                          ? "bg-[#dad7cd] text-[#1c2720] font-bold shadow-md ring-2 ring-[#a3b18a]/40"
+                          : "bg-[#1c2720]/80 text-[#a3b18a] hover:text-[#dad7cd] border border-[#384c3f]"
                       }`}
                     >
                       {category}
@@ -140,8 +140,8 @@ export default function ContactSection() {
             {/* 2. 기본 인적사항 입력 그리드 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-xs font-semibold text-zinc-300">
-                  성함 / 기업명 <span className="text-emerald-400">*</span>
+                <label className="block text-xs font-semibold text-[#dad7cd]">
+                  성함 / 기업명 <span className="text-[#a3b18a]">*</span>
                 </label>
                 <input
                   type="text"
@@ -149,13 +149,13 @@ export default function ContactSection() {
                   placeholder="예: 홍길동 (또는 회사명)"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-[#1c2720]/90 border border-[#384c3f] text-[#f4f2ee] placeholder-[#a3b18a]/60 text-sm focus:outline-none focus:border-[#a3b18a] focus:ring-1 focus:ring-[#a3b18a] transition-colors"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="block text-xs font-semibold text-zinc-300">
-                  연락처 (휴대전화) <span className="text-emerald-400">*</span>
+                <label className="block text-xs font-semibold text-[#dad7cd]">
+                  연락처 (휴대전화) <span className="text-[#a3b18a]">*</span>
                 </label>
                 <input
                   type="tel"
@@ -163,14 +163,14 @@ export default function ContactSection() {
                   placeholder="예: 010-1234-5678"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-[#1c2720]/90 border border-[#384c3f] text-[#f4f2ee] placeholder-[#a3b18a]/60 text-sm focus:outline-none focus:border-[#a3b18a] focus:ring-1 focus:ring-[#a3b18a] transition-colors"
                 />
               </div>
             </div>
 
             {/* 3. 희망 예산 또는 예상 일정 (선택사항) */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-zinc-300">
+              <label className="block text-xs font-semibold text-[#dad7cd]">
                 예상 일정 또는 희망 예산대 (선택)
               </label>
               <input
@@ -178,14 +178,14 @@ export default function ContactSection() {
                 placeholder="예: 다음달 시공 희망 / 주말 레슨 희망 / 예산 500만원 내외 등"
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-[#1c2720]/90 border border-[#384c3f] text-[#f4f2ee] placeholder-[#a3b18a]/60 text-sm focus:outline-none focus:border-[#a3b18a] focus:ring-1 focus:ring-[#a3b18a] transition-colors"
               />
             </div>
 
             {/* 4. 문의 세부 내용 */}
             <div className="space-y-2">
-              <label className="block text-xs font-semibold text-zinc-300">
-                구체적인 상담 및 의뢰 내용 <span className="text-emerald-400">*</span>
+              <label className="block text-xs font-semibold text-[#dad7cd]">
+                구체적인 상담 및 의뢰 내용 <span className="text-[#a3b18a]">*</span>
               </label>
               <textarea
                 required
@@ -193,7 +193,7 @@ export default function ContactSection() {
                 placeholder="의뢰하시고자 하는 프로젝트 내용, 현재 겪고 계신 문제점, 원하시는 목표 등을 자유롭게 적어주세요."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-zinc-950/80 border border-zinc-800 text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-zinc-500 focus:ring-1 focus:ring-zinc-500 transition-colors leading-relaxed"
+                className="w-full px-4 py-3 rounded-xl bg-[#1c2720]/90 border border-[#384c3f] text-[#f4f2ee] placeholder-[#a3b18a]/60 text-sm focus:outline-none focus:border-[#a3b18a] focus:ring-1 focus:ring-[#a3b18a] transition-colors leading-relaxed"
               />
             </div>
 
@@ -204,9 +204,9 @@ export default function ContactSection() {
                 id="agree"
                 checked={agree}
                 onChange={(e) => setAgree(e.target.checked)}
-                className="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-white focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                className="w-4 h-4 rounded border-[#384c3f] bg-[#1c2720] text-[#588157] focus:ring-0 focus:ring-offset-0 cursor-pointer"
               />
-              <label htmlFor="agree" className="text-xs text-zinc-400 cursor-pointer select-none">
+              <label htmlFor="agree" className="text-xs text-[#dad7cd] cursor-pointer select-none">
                 상담 진행 및 연락을 위한 개인정보 수집 및 이용에 동의합니다.
               </label>
             </div>
@@ -215,7 +215,7 @@ export default function ContactSection() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-white text-zinc-950 font-extrabold text-sm sm:text-base hover:bg-zinc-200 transition-all shadow-xl active:scale-[0.99] min-h-[48px] flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-xl bg-[#dad7cd] text-[#1c2720] font-extrabold text-sm sm:text-base hover:bg-[#e4e1d7] transition-all shadow-xl active:scale-[0.99] min-h-[48px] flex items-center justify-center gap-2"
               >
                 <span>상담 신청서 접수하기</span>
                 <span>→</span>
@@ -225,13 +225,13 @@ export default function ContactSection() {
         )}
 
         {/* 다이렉트 긴급 문의 배너 */}
-        <div className="mt-8 pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
+        <div className="mt-8 pt-6 border-t border-[#384c3f]/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#a3b18a]">
           <div>
             ⚡ 빠른 유선 상담이 필요하신가요? 직접 전화 연결도 가능합니다.
           </div>
           <a
             href="tel:010-0000-0000"
-            className="text-white hover:text-zinc-200 font-bold underline underline-offset-4 flex items-center gap-1.5 min-h-[44px]"
+            className="text-[#f4f2ee] hover:text-[#dad7cd] font-bold underline underline-offset-4 flex items-center gap-1.5 min-h-[44px]"
           >
             <span>📞 전화 바로 걸기 (010-0000-0000)</span>
           </a>

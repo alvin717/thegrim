@@ -8,7 +8,7 @@ import FloatingContactBar from "@/components/floating-contact-bar";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#05070d] text-[#f2f4f8] selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-[#1e2a22] text-[#dad7cd] selection:bg-[#a3b18a] selection:text-[#1e2a22]">
       {/* 상단 글로벌 네비게이션 & 로그인/마이페이지 헤더 */}
       <Navbar />
 

@@ -86,40 +86,40 @@ export default function ProofSection() {
 
   return (
     <section id="proof" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900">
-      {/* 핵심 신뢰 지표 카운터 바 */}
+      {/* 핵심 신뢰 지표 카운터 바 (세이지 그린 톤) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20">
-        <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 text-center space-y-1">
-          <div className="text-3xl sm:text-4xl font-extrabold text-white">80+</div>
-          <div className="text-xs sm:text-sm font-semibold text-zinc-300">공간 시공 완공</div>
-          <div className="text-[11px] text-zinc-400">주거 및 상업 공간 프로젝트</div>
+        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
+          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">80+</div>
+          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">공간 시공 완공</div>
+          <div className="text-[11px] text-[#a3b18a]">주거 및 상업 공간 프로젝트</div>
         </div>
-        <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 text-center space-y-1">
-          <div className="text-3xl sm:text-4xl font-extrabold text-white">3,200+</div>
-          <div className="text-xs sm:text-sm font-semibold text-zinc-300">골프 코칭 시간</div>
-          <div className="text-[11px] text-zinc-400">KPGA 준회원 1:1 맞춤 지도</div>
+        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
+          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">3,200+</div>
+          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">골프 코칭 시간</div>
+          <div className="text-[11px] text-[#a3b18a]">KPGA 준회원 1:1 맞춤 지도</div>
         </div>
-        <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 text-center space-y-1">
-          <div className="text-3xl sm:text-4xl font-extrabold text-white">99.4%</div>
-          <div className="text-xs sm:text-sm font-semibold text-zinc-300">수강 만족도</div>
-          <div className="text-[11px] text-zinc-400">공인 한국어교원 지도</div>
+        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
+          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">99.4%</div>
+          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">수강 만족도</div>
+          <div className="text-[11px] text-[#a3b18a]">공인 한국어교원 지도</div>
         </div>
-        <div className="p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800 text-center space-y-1">
-          <div className="text-3xl sm:text-4xl font-extrabold text-white">100%</div>
-          <div className="text-xs sm:text-sm font-semibold text-zinc-300">책임 완수율</div>
-          <div className="text-[11px] text-zinc-400">직영 관리 및 단독 풀스택 빌드</div>
+        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
+          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">100%</div>
+          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">책임 완수율</div>
+          <div className="text-[11px] text-[#a3b18a]">직영 관리 및 단독 풀스택 빌드</div>
         </div>
       </div>
 
       {/* 갤러리 헤더 및 필터 버튼 */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span className="text-xs font-semibold tracking-widest text-zinc-400 uppercase font-mono">
+          <span className="text-xs font-semibold tracking-widest text-[#a3b18a] uppercase font-mono">
             Selected Works & Case Studies
           </span>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#f4f2ee] mt-2">
             결과로 증명하는 포트폴리오
           </h3>
-          <p className="text-zinc-400 text-sm mt-1">
+          <p className="text-[#dad7cd] text-sm mt-1">
             각 분야의 실제 수행 사례와 문제 해결 과정을 확인해 보세요.
           </p>
         </div>
@@ -138,8 +138,8 @@ export default function ProofSection() {
               onClick={() => setFilter(tab.id)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all min-h-[38px] ${
                 filter === tab.id
-                  ? "bg-white text-zinc-950 shadow-md font-bold"
-                  : "bg-zinc-900 text-zinc-400 hover:text-zinc-200 border border-zinc-800"
+                  ? "bg-[#dad7cd] text-[#1c2720] shadow-md font-bold"
+                  : "bg-[#24332a] text-[#a3b18a] hover:text-[#dad7cd] border border-[#384c3f]"
               }`}
             >
               {tab.label}
@@ -153,35 +153,35 @@ export default function ProofSection() {
         {filteredItems.map((item) => (
           <div
             key={item.id}
-            className="group relative rounded-2xl bg-zinc-900/60 border border-zinc-800 hover:border-zinc-700 p-6 flex flex-col justify-between transition-all duration-300 hover:translate-y-[-2px]"
+            className="group relative rounded-2xl bg-[#24332a]/80 border border-[#384c3f] hover:border-[#588157] p-6 flex flex-col justify-between transition-all duration-300 hover:translate-y-[-2px] shadow-sm"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-zinc-400 px-2.5 py-1 bg-zinc-800/80 rounded-md">
+                <span className="text-xs font-semibold text-[#dad7cd] px-2.5 py-1 bg-[#344e41] rounded-md border border-[#588157]/40">
                   {item.categoryLabel}
                 </span>
-                <span className="text-[11px] font-mono text-zinc-400">
+                <span className="text-[11px] font-mono text-[#a3b18a]">
                   {item.metrics}
                 </span>
               </div>
 
-              <h4 className="text-lg font-bold text-white group-hover:text-zinc-200 transition-colors">
+              <h4 className="text-lg font-bold text-[#f4f2ee] group-hover:text-[#dad7cd] transition-colors">
                 {item.title}
               </h4>
-              <p className="text-xs text-zinc-400 font-medium mb-3">
+              <p className="text-xs text-[#a3b18a] font-medium mb-3">
                 {item.subtitle}
               </p>
-              <p className="text-xs text-zinc-300 leading-relaxed mb-4">
+              <p className="text-xs text-[#dad7cd] leading-relaxed mb-4">
                 {item.description}
               </p>
             </div>
 
             <div>
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-800/60">
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#384c3f]/80">
                 {item.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] px-2 py-0.5 rounded bg-zinc-800/50 text-zinc-400"
+                    className="text-[11px] px-2 py-0.5 rounded bg-[#1c2720] text-[#a3b18a] border border-[#384c3f]/50"
                   >
                     #{tag}
                   </span>

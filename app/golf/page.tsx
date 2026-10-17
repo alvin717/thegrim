@@ -78,16 +78,16 @@ const STATS_BEFORE_AFTER = [
 
 export default function GolfPage() {
   return (
-    <div className="min-h-screen bg-[#05070d] text-[#f2f4f8] selection:bg-emerald-400 selection:text-black">
+    <div className="min-h-screen bg-[#1e2a22] text-[#dad7cd] selection:bg-[#a3b18a] selection:text-[#1e2a22]">
       <Navbar />
 
       {/* 1. 히어로 섹션 */}
       <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* 에메랄드 배경 블러 */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-emerald-500/10 blur-[130px] rounded-full pointer-events-none" />
+        {/* 세이지 그린 배경 블러 */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#588157]/15 blur-[130px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-bold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#344e41] border border-[#588157]/50 text-[#dad7cd] text-xs font-bold tracking-wider uppercase">
             <span>⛳ KPGA 준회원 프로 직강</span>
             <span>·</span>
             <span>데이터 기반 1:1 맞춤 레슨</span>

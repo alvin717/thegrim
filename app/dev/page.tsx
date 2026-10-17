@@ -82,16 +82,16 @@ const DEV_PROCESS = [
 
 export default function DevPage() {
   return (
-    <div className="min-h-screen bg-[#05070d] text-[#f2f4f8] selection:bg-purple-400 selection:text-black">
+    <div className="min-h-screen bg-[#1e2a22] text-[#dad7cd] selection:bg-[#a3b18a] selection:text-[#1e2a22]">
       <Navbar />
 
       {/* 1. 히어로 섹션 */}
       <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* 퍼플 배경 블러 */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-500/10 blur-[130px] rounded-full pointer-events-none" />
+        {/* 세이지 그린 배경 블러 */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#588157]/15 blur-[130px] rounded-full pointer-events-none" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-bold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#344e41]/60 border border-[#588157]/40 text-[#a3b18a] text-xs font-bold tracking-wider uppercase">
             <span>💻 FULL-STACK WEB & APP DEVELOPMENT</span>
             <span>·</span>
             <span>최신 Next.js 기반</span>

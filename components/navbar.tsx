@@ -61,7 +61,7 @@ export default function Navbar() {
           : "-translate-y-full opacity-0 pointer-events-none"
       } ${
         isScrolled
-          ? "bg-[#05070d]/90 backdrop-blur-md border-b border-zinc-800/80 py-3 shadow-2xl"
+          ? "bg-[#1c2720]/95 backdrop-blur-md border-b border-[#384c3f]/90 py-3 shadow-xl"
           : "bg-transparent py-5"
       }`}
     >
@@ -69,41 +69,41 @@ export default function Navbar() {
         {/* 브랜드 로고 */}
         <Link
           href="/"
-          className="text-lg sm:text-xl font-black text-white tracking-wider flex items-center gap-2 group"
+          className="text-lg sm:text-xl font-black text-[#f4f2ee] tracking-wider flex items-center gap-2 group"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-white group-hover:scale-125 transition-transform" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#dad7cd] group-hover:scale-125 transition-transform" />
           <span>THE GRIM</span>
         </Link>
 
         {/* 데스크톱 네비게이션 메뉴 (멀티페이지 라우팅) */}
-        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-zinc-300">
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-[#a3b18a]">
           <Link
             href="/interior"
-            className="hover:text-white transition-colors py-1 hover:border-b-2 hover:border-amber-400"
+            className="hover:text-[#f4f2ee] transition-colors py-1 hover:border-b-2 hover:border-[#dad7cd]"
           >
             공간 인테리어
           </Link>
           <Link
             href="/golf"
-            className="hover:text-white transition-colors py-1 hover:border-b-2 hover:border-emerald-400"
+            className="hover:text-[#f4f2ee] transition-colors py-1 hover:border-b-2 hover:border-[#588157]"
           >
             골프 레슨
           </Link>
           <Link
             href="/korean"
-            className="hover:text-white transition-colors py-1 hover:border-b-2 hover:border-blue-400"
+            className="hover:text-[#f4f2ee] transition-colors py-1 hover:border-b-2 hover:border-[#a3b18a]"
           >
             한국어 교육
           </Link>
           <Link
             href="/dev"
-            className="hover:text-white transition-colors py-1 hover:border-b-2 hover:border-purple-400"
+            className="hover:text-[#f4f2ee] transition-colors py-1 hover:border-b-2 hover:border-[#dad7cd]"
           >
             웹·앱 개발
           </Link>
           <Link
             href="/#contact"
-            className="text-zinc-400 hover:text-white transition-colors pl-2 border-l border-zinc-800"
+            className="text-[#a3b18a]/80 hover:text-[#f4f2ee] transition-colors pl-2 border-l border-[#384c3f]"
           >
             1:1 상담 의뢰
           </Link>
@@ -115,14 +115,14 @@ export default function Navbar() {
             <div className="flex items-center gap-2">
               <Link
                 href="/mypage"
-                className="px-3.5 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold border border-zinc-700 transition-all flex items-center gap-1.5 min-h-[38px]"
+                className="px-3.5 py-1.5 rounded-full bg-[#344e41] hover:bg-[#3f5d4f] text-[#dad7cd] text-xs font-bold border border-[#588157] transition-all flex items-center gap-1.5 min-h-[38px]"
               >
                 <span>👤</span>
                 <span>마이페이지</span>
               </Link>
               <button
                 onClick={handleLogout}
-                className="text-xs text-zinc-400 hover:text-zinc-200 transition-colors px-2 py-1"
+                className="text-xs text-[#a3b18a] hover:text-[#dad7cd] transition-colors px-2 py-1"
               >
                 로그아웃
               </button>
@@ -130,7 +130,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-4 py-2 rounded-full bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-extrabold transition-all shadow-md active:scale-95 flex items-center gap-1.5 min-h-[38px]"
+              className="px-4 py-2 rounded-full bg-[#dad7cd] text-[#1c2720] hover:bg-[#e4e1d7] text-xs font-extrabold transition-all shadow-md active:scale-95 flex items-center gap-1.5 min-h-[38px]"
             >
               <span>고객 / 수강생 로그인</span>
               <span>→</span>
@@ -140,7 +140,7 @@ export default function Navbar() {
           {/* 모바일 햄버거 메뉴 토글 버튼 */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-zinc-400 hover:text-white focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="lg:hidden p-2 rounded-lg text-[#a3b18a] hover:text-[#f4f2ee] focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
             aria-label="전체 메뉴 열기"
           >
             <span className="text-xl">{mobileMenuOpen ? "✕" : "☰"}</span>
@@ -150,59 +150,59 @@ export default function Navbar() {
 
       {/* 모바일 드롭다운 메뉴 (멀티페이지 링크 탑재) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0d14] border-b border-zinc-800 px-6 py-5 space-y-3 text-sm">
-          <div className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-2">
+        <div className="lg:hidden bg-[#1c2720] border-b border-[#384c3f] px-6 py-5 space-y-3 text-sm">
+          <div className="text-[11px] font-bold text-[#a3b18a] uppercase tracking-wider mb-2">
             전문 영역 바로가기
           </div>
           <Link
             href="/interior"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between py-2 text-zinc-200 hover:text-white border-b border-zinc-900"
+            className="flex items-center justify-between py-2 text-[#dad7cd] hover:text-white border-b border-[#28382e]"
           >
             <span>🏛️ 공간 인테리어 & 시공</span>
-            <span className="text-xs text-amber-400">상세보기 →</span>
+            <span className="text-xs text-[#dad7cd]">상세보기 →</span>
           </Link>
           <Link
             href="/golf"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between py-2 text-zinc-200 hover:text-white border-b border-zinc-900"
+            className="flex items-center justify-between py-2 text-[#dad7cd] hover:text-white border-b border-[#28382e]"
           >
             <span>⛳ 골프 코칭 & 1:1 레슨</span>
-            <span className="text-xs text-emerald-400">상세보기 →</span>
+            <span className="text-xs text-[#a3b18a]">상세보기 →</span>
           </Link>
           <Link
             href="/korean"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between py-2 text-zinc-200 hover:text-white border-b border-zinc-900"
+            className="flex items-center justify-between py-2 text-[#dad7cd] hover:text-white border-b border-[#28382e]"
           >
             <span>🇰🇷 공인 한국어 지도 & 교육</span>
-            <span className="text-xs text-blue-400">상세보기 →</span>
+            <span className="text-xs text-[#a3b18a]">상세보기 →</span>
           </Link>
           <Link
             href="/dev"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center justify-between py-2 text-zinc-200 hover:text-white border-b border-zinc-900"
+            className="flex items-center justify-between py-2 text-[#dad7cd] hover:text-white border-b border-[#28382e]"
           >
             <span>💻 웹 & 앱 풀스택 개발</span>
-            <span className="text-xs text-purple-400">상세보기 →</span>
+            <span className="text-xs text-[#dad7cd]">상세보기 →</span>
           </Link>
 
           <div className="pt-2">
             <Link
               href="/#contact"
               onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-zinc-300 hover:text-white"
+              className="block py-2 text-[#a3b18a] hover:text-[#dad7cd]"
             >
               📞 1:1 견적 및 상담 의뢰
             </Link>
           </div>
 
-          <div className="pt-2 border-t border-zinc-800">
+          <div className="pt-2 border-t border-[#384c3f]">
             {user ? (
               <Link
                 href="/mypage"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 font-bold text-amber-300"
+                className="block py-2 font-bold text-[#dad7cd]"
               >
                 👤 마이페이지 바로가기
               </Link>
@@ -210,7 +210,7 @@ export default function Navbar() {
               <Link
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 font-bold text-white"
+                className="block py-2 font-bold text-[#f4f2ee]"
               >
                 🔑 로그인 / 회원가입
               </Link>
