@@ -85,41 +85,41 @@ export default function ProofSection() {
       : PORTFOLIO_ITEMS.filter((item) => item.category === filter)
 
   return (
-    <section id="proof" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900">
-      {/* 핵심 신뢰 지표 카운터 바 (세이지 그린 톤) */}
+    <section id="proof" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200/80">
+      {/* 핵심 신뢰 지표 카운터 바 (화이트 글래스 & 스카이 악센트) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20">
-        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
-          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">80+</div>
-          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">공간 시공 완공</div>
-          <div className="text-[11px] text-[#a3b18a]">주거 및 상업 공간 프로젝트</div>
+        <div className="p-6 rounded-2xl bg-white/85 border border-slate-200/90 text-center space-y-1 shadow-md backdrop-blur-md">
+          <div className="text-3xl sm:text-4xl font-black text-sky-700">80+</div>
+          <div className="text-xs sm:text-sm font-bold text-slate-800">공간 시공 완공</div>
+          <div className="text-[11px] text-slate-500 font-medium">주거 및 상업 공간 프로젝트</div>
         </div>
-        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
-          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">3,200+</div>
-          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">골프 코칭 시간</div>
-          <div className="text-[11px] text-[#a3b18a]">KPGA 준회원 1:1 맞춤 지도</div>
+        <div className="p-6 rounded-2xl bg-white/85 border border-slate-200/90 text-center space-y-1 shadow-md backdrop-blur-md">
+          <div className="text-3xl sm:text-4xl font-black text-sky-700">3,200+</div>
+          <div className="text-xs sm:text-sm font-bold text-slate-800">골프 코칭 시간</div>
+          <div className="text-[11px] text-slate-500 font-medium">KPGA 준회원 1:1 맞춤 지도</div>
         </div>
-        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
-          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">99.4%</div>
-          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">수강 만족도</div>
-          <div className="text-[11px] text-[#a3b18a]">공인 한국어교원 지도</div>
+        <div className="p-6 rounded-2xl bg-white/85 border border-slate-200/90 text-center space-y-1 shadow-md backdrop-blur-md">
+          <div className="text-3xl sm:text-4xl font-black text-sky-700">99.4%</div>
+          <div className="text-xs sm:text-sm font-bold text-slate-800">수강 만족도</div>
+          <div className="text-[11px] text-slate-500 font-medium">공인 한국어교원 지도</div>
         </div>
-        <div className="p-6 rounded-2xl bg-[#26372d]/80 border border-[#384c3f] text-center space-y-1 shadow-sm">
-          <div className="text-3xl sm:text-4xl font-extrabold text-[#f4f2ee]">100%</div>
-          <div className="text-xs sm:text-sm font-semibold text-[#dad7cd]">책임 완수율</div>
-          <div className="text-[11px] text-[#a3b18a]">직영 관리 및 단독 풀스택 빌드</div>
+        <div className="p-6 rounded-2xl bg-white/85 border border-slate-200/90 text-center space-y-1 shadow-md backdrop-blur-md">
+          <div className="text-3xl sm:text-4xl font-black text-sky-700">100%</div>
+          <div className="text-xs sm:text-sm font-bold text-slate-800">책임 완수율</div>
+          <div className="text-[11px] text-slate-500 font-medium">직영 관리 및 단독 풀스택 빌드</div>
         </div>
       </div>
 
       {/* 갤러리 헤더 및 필터 버튼 */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span className="text-xs font-semibold tracking-widest text-[#a3b18a] uppercase font-mono">
+          <span className="text-xs font-bold tracking-widest text-sky-700 uppercase font-mono">
             Selected Works & Case Studies
           </span>
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-[#f4f2ee] mt-2">
+          <h3 className="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
             결과로 증명하는 포트폴리오
           </h3>
-          <p className="text-[#dad7cd] text-sm mt-1">
+          <p className="text-slate-600 text-sm mt-1 font-medium">
             각 분야의 실제 수행 사례와 문제 해결 과정을 확인해 보세요.
           </p>
         </div>
@@ -138,8 +138,8 @@ export default function ProofSection() {
               onClick={() => setFilter(tab.id)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all min-h-[38px] ${
                 filter === tab.id
-                  ? "bg-[#dad7cd] text-[#1c2720] shadow-md font-bold"
-                  : "bg-[#24332a] text-[#a3b18a] hover:text-[#dad7cd] border border-[#384c3f]"
+                  ? "bg-sky-600 text-white shadow-md font-bold"
+                  : "bg-white/80 text-slate-600 hover:text-slate-900 border border-slate-200"
               }`}
             >
               {tab.label}
@@ -153,35 +153,35 @@ export default function ProofSection() {
         {filteredItems.map((item) => (
           <div
             key={item.id}
-            className="group relative rounded-2xl bg-[#24332a]/80 border border-[#384c3f] hover:border-[#588157] p-6 flex flex-col justify-between transition-all duration-300 hover:translate-y-[-2px] shadow-sm"
+            className="group relative rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 p-6 flex flex-col justify-between transition-all duration-300 hover:translate-y-[-2px] shadow-md backdrop-blur-md"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-[#dad7cd] px-2.5 py-1 bg-[#344e41] rounded-md border border-[#588157]/40">
+                <span className="text-xs font-bold text-sky-800 px-2.5 py-1 bg-sky-100 rounded-md border border-sky-200">
                   {item.categoryLabel}
                 </span>
-                <span className="text-[11px] font-mono text-[#a3b18a]">
+                <span className="text-[11px] font-mono text-slate-500 font-semibold">
                   {item.metrics}
                 </span>
               </div>
 
-              <h4 className="text-lg font-bold text-[#f4f2ee] group-hover:text-[#dad7cd] transition-colors">
+              <h4 className="text-lg font-black text-slate-900 group-hover:text-sky-700 transition-colors">
                 {item.title}
               </h4>
-              <p className="text-xs text-[#a3b18a] font-medium mb-3">
+              <p className="text-xs text-sky-700 font-semibold mb-3">
                 {item.subtitle}
               </p>
-              <p className="text-xs text-[#dad7cd] leading-relaxed mb-4">
+              <p className="text-xs text-slate-600 leading-relaxed mb-4 font-medium">
                 {item.description}
               </p>
             </div>
 
             <div>
-              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#384c3f]/80">
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-200">
                 {item.tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-[11px] px-2 py-0.5 rounded bg-[#1c2720] text-[#a3b18a] border border-[#384c3f]/50"
+                    className="text-[11px] px-2 py-0.5 rounded bg-sky-50 text-sky-800 border border-sky-100 font-medium"
                   >
                     #{tag}
                   </span>

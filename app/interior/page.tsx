@@ -88,221 +88,228 @@ const PROCESS_STEPS = [
 
 export default function InteriorPage() {
   return (
-    <div className="min-h-screen bg-[#1e2a22] text-[#dad7cd] selection:bg-[#a3b18a] selection:text-[#1e2a22]">
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-sky-200 selection:text-sky-900 relative">
+      {/* 1번 이미지 배경 적용: '1번이미지 공간 인테리어' */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat opacity-95"
+        style={{ backgroundImage: "url('/images/bg/bg-interior.png')" }}
+      />
 
-      {/* 1. 히어로 섹션 */}
-      <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* 배경 은은한 세이지/모스 빛 */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#588157]/15 blur-[130px] rounded-full pointer-events-none" />
+      <div className="relative z-10">
+        <Navbar />
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#344e41] border border-[#588157]/50 text-[#dad7cd] text-xs font-bold tracking-wider uppercase">
-            <span>🏛️ THE GRIM SPATIAL DESIGN</span>
-            <span>·</span>
-            <span>직영 책임 시공</span>
+        {/* 1. 히어로 섹션 */}
+        <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+          <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100 border border-sky-300 text-sky-800 text-xs font-bold tracking-wider uppercase shadow-sm">
+              <span>🏛️ THE GRIM SPATIAL DESIGN</span>
+              <span>·</span>
+              <span>1번 배경 이미지 적용</span>
+              <span>·</span>
+              <span>직영 책임 시공</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.2]">
+              머무는 사람의 품격을 높이는
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-teal-600">
+                하이엔드 공간 인테리어 디렉팅
+              </span>
+            </h1>
+
+            <p className="text-slate-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+              단순히 예쁜 마감재를 바르는 것을 넘어, 공간에 머무는 사람의 호흡과 동선을 연구합니다.
+              사전 3D 가상 시각화부터 직영 책임 시공까지 군더더기 없는 완벽을 선사합니다.
+            </p>
+
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
+              <a
+                href="#portfolio"
+                className="px-6 py-3.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
+              >
+                <span>시공 포트폴리오 둘러보기</span>
+                <span>↓</span>
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-all min-h-[44px] flex items-center gap-2"
+              >
+                <span>실시간 견적 & 상담 신청</span>
+                <span>→</span>
+              </a>
+            </div>
+
+            {/* 핵심 지표 3종 */}
+            <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto border-t border-slate-200">
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900">80+ 건</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">완공 프로젝트</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-sky-700">100%</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">현장 직영 책임 감리</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900">3D 제안</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">착공 전 가상 렌더링</div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2]">
-            머무는 사람의 품격을 높이는
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-orange-300 to-amber-500">
-              하이엔드 공간 인테리어 디렉팅
+        {/* 2. Before & After 및 대표 포트폴리오 섹션 */}
+        <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
+              Signature Works
             </span>
-          </h1>
-
-          <p className="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            단순히 예쁜 마감재를 바르는 것을 넘어, 공간에 머무는 사람의 호흡과 동선을 연구합니다.
-            사전 3D 가상 시각화부터 직영 책임 시공까지 군더더기 없는 완벽을 선사합니다.
-          </p>
-
-          <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <a
-              href="#portfolio"
-              className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-200 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
-            >
-              <span>시공 포트폴리오 둘러보기</span>
-              <span>↓</span>
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-3.5 rounded-xl bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[44px] flex items-center gap-2"
-            >
-              <span>실시간 견적 & 상담 신청</span>
-              <span>→</span>
-            </a>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
+              시공 사례 및 공간 갤러리
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base font-medium">
+              클라이언트의 취향과 상업적 목적에 최적화된 대표 완공 프로젝트입니다.
+            </p>
           </div>
 
-          {/* 핵심 지표 3종 */}
-          <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto border-t border-zinc-800/80">
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">80+ 건</div>
-              <div className="text-xs text-zinc-400 mt-1">완공 프로젝트</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400">100%</div>
-              <div className="text-xs text-zinc-400 mt-1">현장 직영 책임 감리</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">3D 제안</div>
-              <div className="text-xs text-zinc-400 mt-1">착공 전 가상 렌더링</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. Before & After 및 대표 포트폴리오 섹션 */}
-      <section id="portfolio" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold text-amber-400 tracking-widest uppercase">
-            Signature Works
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            시공 사례 및 공간 갤러리
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-base">
-            클라이언트의 취향과 상업적 목적에 최적화된 대표 완공 프로젝트입니다.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {PORTFOLIO_CASES.map((item, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl bg-zinc-900/80 border border-zinc-800 hover:border-amber-500/40 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                    {item.badge}
-                  </span>
-                  <span className="text-xs text-zinc-400 font-mono">{item.area}</span>
-                </div>
-
-                <div>
-                  <div className="text-xs text-zinc-400 mb-1">{item.category}</div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-amber-200 transition-colors">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <div className="p-3 rounded-xl bg-zinc-950/60 border border-zinc-850 text-xs text-zinc-300">
-                  <span className="font-semibold text-amber-300">💡 변화 핵심: </span>
-                  {item.beforeAfter}
-                </div>
-
-                <div className="space-y-2 pt-2">
-                  <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">
-                    시공 디테일
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {PORTFOLIO_CASES.map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
+                      {item.badge}
+                    </span>
+                    <span className="text-xs text-slate-500 font-mono font-semibold">{item.area}</span>
                   </div>
-                  <ul className="space-y-1.5">
-                    {item.points.map((p, pIdx) => (
-                      <li key={pIdx} className="text-xs text-zinc-300 flex items-start gap-2">
-                        <span className="text-amber-400 font-bold">·</span>
-                        <span>{p}</span>
-                      </li>
-                    ))}
-                  </ul>
+
+                  <div>
+                    <div className="text-xs text-slate-500 font-semibold mb-1">{item.category}</div>
+                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
+                      {item.title}
+                    </h3>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 font-medium">
+                    <span className="font-bold text-sky-700">💡 변화 핵심: </span>
+                    {item.beforeAfter}
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      시공 디테일
+                    </div>
+                    <ul className="space-y-1.5">
+                      {item.points.map((p, pIdx) => (
+                        <li key={pIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
+                          <span className="text-sky-600 font-bold">·</span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+                  <span>공사 기간: {item.period}</span>
+                  <span className="text-slate-800 font-bold">{item.concept}</span>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
 
-              <div className="pt-4 border-t border-zinc-800 flex items-center justify-between text-xs text-zinc-400">
-                <span>공사 기간: {item.period}</span>
-                <span className="text-zinc-300 font-semibold">{item.concept}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. 5단계 시공 프로세스 안내 */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900 bg-zinc-950/40 rounded-3xl my-10">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold text-amber-400 tracking-widest uppercase">
-            Work Process
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            불안 없는 5단계 안심 시공 프로세스
-          </h2>
-          <p className="text-zinc-400 text-sm">
-            견적 부풀리기나 공사 지연 없이, 모든 단계가 투명하게 공유됩니다.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {PROCESS_STEPS.map((step, idx) => (
-            <div
-              key={idx}
-              className="p-5 rounded-2xl bg-zinc-900/70 border border-zinc-800 flex flex-col justify-between space-y-3"
-            >
-              <div className="text-2xl font-black text-amber-400/80 font-mono">
-                {step.step}
-              </div>
-              <h3 className="text-sm font-bold text-white leading-snug">
-                {step.title}
-              </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. 견적 가이드라인 안내 */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-900/90 to-zinc-950 border border-zinc-800 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-6">
-            <div>
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-widest">
-                Estimation Guide
-              </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
-                투명한 예산 맞춤형 견적 시스템
-              </h3>
-            </div>
-            <span className="text-xs text-zinc-400 bg-zinc-800 px-3 py-1.5 rounded-lg">
-              상담 시 상세 자재표 제공
+        {/* 3. 5단계 시공 프로세스 안내 */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 bg-white/70 backdrop-blur-md rounded-3xl my-10 shadow-sm border">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
+              Work Process
             </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
+              불안 없는 5단계 안심 시공 프로세스
+            </h2>
+            <p className="text-slate-600 text-sm font-medium">
+              견적 부풀리기나 공사 지연 없이, 모든 단계가 투명하게 공유됩니다.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-            <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-850 space-y-2">
-              <div className="text-xs font-bold text-zinc-400">부분 리모델링 / 홈스타일링</div>
-              <div className="text-xl font-black text-white">맞춤 조율</div>
-              <p className="text-xs text-zinc-400">
-                욕실, 주방, 도배·마루 등 꼭 필요한 핵심 영역만 합리적으로 개선
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {PROCESS_STEPS.map((step, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-white/90 border border-slate-200 flex flex-col justify-between space-y-3 shadow-sm"
+              >
+                <div className="text-2xl font-black text-sky-700 font-mono">
+                  {step.step}
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                  {step.title}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            <div className="p-5 rounded-2xl bg-zinc-950/60 border border-amber-500/30 space-y-2 relative">
-              <span className="absolute top-3 right-3 text-[10px] font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded">
-                인기 선택
+        {/* 4. 견적 가이드라인 안내 */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white/85 border border-slate-200 shadow-xl backdrop-blur-md space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+              <div>
+                <span className="text-xs font-bold text-sky-700 uppercase tracking-widest">
+                  Estimation Guide
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                  투명한 예산 맞춤형 견적 시스템
+                </h3>
+              </div>
+              <span className="text-xs text-slate-600 bg-slate-100 font-semibold px-3 py-1.5 rounded-lg border border-slate-200">
+                상담 시 상세 자재표 제공
               </span>
-              <div className="text-xs font-bold text-amber-300">올 리모델링 (주거 올수리)</div>
-              <div className="text-xl font-black text-white">평당 맞춤 견적</div>
-              <p className="text-xs text-zinc-400">
-                샷시 교체, 단열 보강, 배관 점검부터 무몰딩 히든도어 마감까지 풀체인지
-              </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-zinc-950/60 border border-zinc-850 space-y-2">
-              <div className="text-xs font-bold text-zinc-400">상업 공간 브랜딩 인테리어</div>
-              <div className="text-xl font-black text-white">프로젝트별 기획</div>
-              <p className="text-xs text-zinc-400">
-                매장 콘셉트 기획, 고객 회전율 동선 분석, 소방법 및 인허가 완벽 대응
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <div className="text-xs font-bold text-slate-500">부분 리모델링 / 홈스타일링</div>
+                <div className="text-xl font-black text-slate-900">맞춤 조율</div>
+                <p className="text-xs text-slate-600 font-medium">
+                  욕실, 주방, 도배·마루 등 꼭 필요한 핵심 영역만 합리적으로 개선
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-sky-50/70 border border-sky-300 space-y-2 relative">
+                <span className="absolute top-3 right-3 text-[10px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded border border-sky-200">
+                  인기 선택
+                </span>
+                <div className="text-xs font-bold text-sky-800">올 리모델링 (주거 올수리)</div>
+                <div className="text-xl font-black text-slate-900">평당 맞춤 견적</div>
+                <p className="text-xs text-slate-600 font-medium">
+                  샷시 교체, 단열 보강, 배관 점검부터 무몰딩 히든도어 마감까지 풀체인지
+                </p>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <div className="text-xs font-bold text-slate-500">상업 공간 브랜딩 인테리어</div>
+                <div className="text-xl font-black text-slate-900">프로젝트별 기획</div>
+                <p className="text-xs text-slate-600 font-medium">
+                  매장 콘셉트 기획, 고객 회전율 동선 분석, 소방법 및 인허가 완벽 대응
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5. 1:1 상담 신청 폼 */}
-      <ContactSection />
+        {/* 5. 1:1 상담 신청 폼 */}
+        <ContactSection />
 
-      {/* 푸터 및 모바일 바 */}
-      <Footer />
-      <FloatingContactBar />
+        {/* 푸터 및 모바일 바 */}
+        <Footer />
+        <FloatingContactBar />
+      </div>
     </div>
   )
 }

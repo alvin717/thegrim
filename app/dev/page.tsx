@@ -82,206 +82,213 @@ const DEV_PROCESS = [
 
 export default function DevPage() {
   return (
-    <div className="min-h-screen bg-[#1e2a22] text-[#dad7cd] selection:bg-[#a3b18a] selection:text-[#1e2a22]">
-      <Navbar />
+    <div className="min-h-screen bg-slate-50 text-slate-800 selection:bg-sky-200 selection:text-sky-900 relative">
+      {/* 4번 이미지 배경 적용: '4번이미지 웹,앱 개발' */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center bg-no-repeat opacity-95"
+        style={{ backgroundImage: "url('/images/bg/bg-dev.png')" }}
+      />
 
-      {/* 1. 히어로 섹션 */}
-      <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        {/* 세이지 그린 배경 블러 */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#588157]/15 blur-[130px] rounded-full pointer-events-none" />
+      <div className="relative z-10">
+        <Navbar />
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#344e41]/60 border border-[#588157]/40 text-[#a3b18a] text-xs font-bold tracking-wider uppercase">
-            <span>💻 FULL-STACK WEB & APP DEVELOPMENT</span>
-            <span>·</span>
-            <span>최신 Next.js 기반</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2]">
-            기획부터 디자인, 배포까지
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-pink-300 to-fuchsia-400">
-              비즈니스를 움직이는 기술을 만듭니다
-            </span>
-          </h1>
-
-          <p className="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            화려하기만 하고 관리가 안 되는 웹사이트는 사양합니다.
-            방문자를 실제 고객으로 바꾸는 감각적인 디자인과 강력한 데이터베이스 연동,
-            그리고 대표님의 시간을 아껴주는 업무 자동화 시스템을 완성해 드립니다.
-          </p>
-
-          <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <a
-              href="#solutions"
-              className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-200 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
-            >
-              <span>개발 솔루션 둘러보기</span>
-              <span>↓</span>
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-3.5 rounded-xl bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[44px] flex items-center gap-2"
-            >
-              <span>프로젝트 외주 & 견적 문의</span>
-              <span>→</span>
-            </a>
-          </div>
-
-          {/* 핵심 지표 */}
-          <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto border-t border-zinc-800/80">
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">35+ 개</div>
-              <div className="text-xs text-zinc-400 mt-1">런칭 웹·앱 시스템</div>
+        {/* 1. 히어로 섹션 */}
+        <section className="relative pt-36 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+          <div className="relative z-10 text-center max-w-4xl mx-auto space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100 border border-sky-300 text-sky-800 text-xs font-bold tracking-wider uppercase shadow-sm">
+              <span>💻 FULL-STACK WEB & APP DEVELOPMENT</span>
+              <span>·</span>
+              <span>4번 배경 이미지 적용</span>
+              <span>·</span>
+              <span>최신 Next.js 기반</span>
             </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-purple-400">1초 미만</div>
-              <div className="text-xs text-zinc-400 mt-1">초고속 페이지 로딩</div>
-            </div>
-            <div>
-              <div className="text-2xl sm:text-3xl font-extrabold text-white">100% 모바일</div>
-              <div className="text-xs text-zinc-400 mt-1">완벽 반응형 지원</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 2. 3대 핵심 개발 솔루션 */}
-      <section id="solutions" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold text-purple-400 tracking-widest uppercase">
-            Solutions
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            제작 가능한 주요 개발 분야
-          </h2>
-          <p className="text-zinc-400 text-sm sm:text-base">
-            단순 소개형 홈페이지부터 복잡한 기능의 고객 관리 웹 애플리케이션까지 모두 가능합니다.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {DEV_SOLUTIONS.map((sol, idx) => (
-            <div
-              key={idx}
-              className={`rounded-2xl bg-zinc-900/80 border ${sol.accent} hover:border-purple-400/60 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1`}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-purple-500/10 text-purple-300 border border-purple-500/20">
-                    {sol.badge}
-                  </span>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-purple-200 transition-colors">
-                    {sol.title}
-                  </h3>
-                  <div className="text-xs text-zinc-400 mt-1.5 leading-relaxed">
-                    🎯 추천 대상: {sol.target}
-                  </div>
-                </div>
-
-                <div className="space-y-2 pt-2">
-                  <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider">
-                    핵심 탑재 기술 & 기능
-                  </div>
-                  <ul className="space-y-2">
-                    {sol.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="text-xs text-zinc-300 flex items-start gap-2">
-                        <span className="text-purple-400 font-bold">✓</span>
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-zinc-800 text-xs text-purple-300 font-semibold bg-purple-950/20 p-3 rounded-xl border border-purple-900/40">
-                ⚙️ 핵심 스택: {sol.tech}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. 5단계 체계적 개발 프로세스 */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-zinc-900 bg-zinc-950/40 rounded-3xl my-10">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold text-purple-400 tracking-widest uppercase">
-            Development Lifecycle
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-            기획부터 배포까지 투명한 5단계 개발 흐름
-          </h2>
-          <p className="text-zinc-400 text-sm">
-            소통 부재로 인한 재작업 없이, 매 단계 진행 상황을 눈으로 확인하며 완성됩니다.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {DEV_PROCESS.map((p, idx) => (
-            <div
-              key={idx}
-              className="p-5 rounded-2xl bg-zinc-900/70 border border-zinc-800 flex flex-col justify-between space-y-3"
-            >
-              <div className="text-2xl font-black text-purple-400/80 font-mono">
-                {p.step}
-              </div>
-              <h3 className="text-sm font-bold text-white leading-snug">
-                {p.title}
-              </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                {p.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. 대표님 전용 관리자 기능 소개 */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="p-8 sm:p-10 rounded-3xl bg-zinc-900/90 border border-zinc-800 space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-800 pb-6">
-            <div>
-              <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">
-                Admin System Integration
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.2]">
+              기획부터 디자인, 배포까지
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-teal-600">
+                비즈니스를 움직이는 기술을 만듭니다
               </span>
-              <h3 className="text-xl sm:text-2xl font-extrabold text-white mt-1">
-                관리자 대시보드 무상 연동
-              </h3>
+            </h1>
+
+            <p className="text-slate-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+              화려하기만 하고 관리가 안 되는 웹사이트는 사양합니다.
+              방문자를 실제 고객으로 바꾸는 감각적인 디자인과 강력한 데이터베이스 연동,
+              그리고 대표님의 시간을 아껴주는 업무 자동화 시스템을 완성해 드립니다.
+            </p>
+
+            <div className="pt-4 flex flex-wrap justify-center gap-4">
+              <a
+                href="#solutions"
+                className="px-6 py-3.5 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-slate-800 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
+              >
+                <span>개발 솔루션 둘러보기</span>
+                <span>↓</span>
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm shadow-md transition-all min-h-[44px] flex items-center gap-2"
+              >
+                <span>프로젝트 외주 & 견적 문의</span>
+                <span>→</span>
+              </a>
             </div>
-            <Link
-              href="/admin"
-              className="text-xs text-purple-300 hover:text-white bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700 transition-colors"
-            >
-              관리자 페이지 데모 체험 🔒
-            </Link>
+
+            {/* 핵심 지표 */}
+            <div className="grid grid-cols-3 gap-4 pt-12 max-w-2xl mx-auto border-t border-slate-200">
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900">35+ 개</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">런칭 웹·앱 시스템</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-sky-700">1초 미만</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">초고속 페이지 로딩</div>
+              </div>
+              <div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900">100% 모바일</div>
+                <div className="text-xs text-slate-500 font-semibold mt-1">완벽 반응형 지원</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. 3대 핵심 개발 솔루션 */}
+        <section id="solutions" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
+              Solutions
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
+              제작 가능한 주요 개발 분야
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base font-medium">
+              단순 소개형 홈페이지부터 복잡한 기능의 고객 관리 웹 애플리케이션까지 모두 가능합니다.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-            <div className="p-4 rounded-xl bg-zinc-950/70 border border-zinc-850 space-y-1.5">
-              <div className="font-bold text-purple-300">실시간 상담 접수 알림</div>
-              <p className="text-zinc-400">고객이 폼을 제출하는 즉시 관리자 페이지에 실시간 반영 및 확인</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {DEV_SOLUTIONS.map((sol, idx) => (
+              <div
+                key={idx}
+                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
+                      {sol.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
+                      {sol.title}
+                    </h3>
+                    <div className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
+                      🎯 추천 대상: {sol.target}
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 pt-2">
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      핵심 탑재 기술 & 기능
+                    </div>
+                    <ul className="space-y-2">
+                      {sol.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
+                          <span className="text-sky-600 font-bold">✓</span>
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200 text-xs text-sky-800 font-bold bg-sky-50 p-3 rounded-xl border border-sky-100">
+                  ⚙️ 핵심 스택: {sol.tech}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. 5단계 체계적 개발 프로세스 */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 bg-white/70 backdrop-blur-md rounded-3xl my-10 shadow-sm border">
+          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
+              Development Lifecycle
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
+              기획부터 배포까지 투명한 5단계 개발 흐름
+            </h2>
+            <p className="text-slate-600 text-sm font-medium">
+              소통 부재로 인한 재작업 없이, 매 단계 진행 상황을 눈으로 확인하며 완성됩니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {DEV_PROCESS.map((p, idx) => (
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-white/90 border border-slate-200 flex flex-col justify-between space-y-3 shadow-sm"
+              >
+                <div className="text-2xl font-black text-sky-700 font-mono">
+                  {p.step}
+                </div>
+                <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                  {p.title}
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                  {p.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 4. 대표님 전용 관리자 기능 소개 */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="p-8 sm:p-10 rounded-3xl bg-white/85 border border-slate-200 shadow-xl backdrop-blur-md space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-6">
+              <div>
+                <span className="text-xs font-bold text-sky-700 uppercase tracking-widest">
+                  Admin System Integration
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">
+                  관리자 대시보드 무상 연동
+                </h3>
+              </div>
+              <Link
+                href="/admin"
+                className="text-xs text-sky-700 hover:text-sky-900 bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-200 font-bold transition-colors"
+              >
+                관리자 페이지 데모 체험 🔒
+              </Link>
             </div>
-            <div className="p-4 rounded-xl bg-zinc-950/70 border border-zinc-850 space-y-1.5">
-              <div className="font-bold text-purple-300">원클릭 고객 다이렉트 통화</div>
-              <p className="text-zinc-400">모바일에서 접수된 전화번호를 클릭하면 즉시 통화 연결</p>
-            </div>
-            <div className="p-4 rounded-xl bg-zinc-950/70 border border-zinc-850 space-y-1.5">
-              <div className="font-bold text-purple-300">엑셀(CSV) 원클릭 백업</div>
-              <p className="text-zinc-400">누적된 고객 리스트를 엑셀 파일로 한 번에 다운로드하여 관리</p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="font-bold text-sky-800">실시간 상담 접수 알림</div>
+                <p className="text-slate-600 font-medium">고객이 폼을 제출하는 즉시 관리자 페이지에 실시간 반영 및 확인</p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="font-bold text-sky-800">원클릭 고객 다이렉트 통화</div>
+                <p className="text-slate-600 font-medium">모바일에서 접수된 전화번호를 클릭하면 즉시 통화 연결</p>
+              </div>
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                <div className="font-bold text-sky-800">엑셀(CSV) 원클릭 백업</div>
+                <p className="text-slate-600 font-medium">누적된 고객 리스트를 엑셀 파일로 한 번에 다운로드하여 관리</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 5. 1:1 상담 신청 폼 */}
-      <ContactSection />
+        {/* 5. 1:1 상담 신청 폼 */}
+        <ContactSection />
 
-      {/* 푸터 및 모바일 바 */}
-      <Footer />
-      <FloatingContactBar />
+        {/* 푸터 및 모바일 바 */}
+        <Footer />
+        <FloatingContactBar />
+      </div>
     </div>
   )
 }

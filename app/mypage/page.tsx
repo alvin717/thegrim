@@ -32,8 +32,12 @@ export default function MyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#05070d] text-[#f2f4f8] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div
+      className="min-h-screen bg-slate-50 text-slate-800 py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: "url('/images/bg/bg-korean.png')" }}
+    >
+      <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] pointer-events-none" />
+      <div className="max-w-5xl mx-auto space-y-8 relative z-10">
         {/* 상단 네비게이션 */}
         <div className="flex items-center justify-between pb-6 border-b border-zinc-800">
           <Link

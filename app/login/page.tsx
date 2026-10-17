@@ -100,9 +100,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#05070d] text-[#f2f4f8] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* 은은한 배경 장식 */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-zinc-800/20 rounded-full blur-3xl pointer-events-none" />
+    <div
+      className="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/images/bg/bg-korean.png')" }}
+    >
+      {/* 화이트 글래스 오버레이 */}
+      <div className="absolute inset-0 bg-white/70 backdrop-blur-[2px] pointer-events-none" />
 
       {/* 상단 홈으로 돌아가기 */}
       <div className="absolute top-6 left-6 z-10">
