@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import FloatingContactBar from "@/components/floating-contact-bar"
 import ContactSection from "@/components/contact-section"
+import KoreanCoursesSection from "@/components/korean-courses-section"
 import KoreanTutorIntegration from "@/components/korean-tutor-integration"
 import Link from "next/link"
 
@@ -12,45 +13,6 @@ export const metadata: Metadata = {
     "공인 한국어교원 직강! 외국인 주재원 비즈니스 회화부터 TOPIK 고득점 합격까지, 1:1 맞춤형 발음 교정과 문화 연계 강의",
 }
 
-// 3대 교육 과정
-const KOREAN_COURSES = [
-  {
-    title: "글로벌 기업 주재원 비즈니스 속성반",
-    badge: "기업 임직원 추천",
-    target: "한국 지사 파견 주재원, 글로벌 기업 외국인 임원 및 실무진",
-    features: [
-      "한국 비즈니스 격식체(하십시오체/해요체)와 공문서 이메일 작성법",
-      "한국 특유의 회의 문화, 결재 보고, 거래처 미팅 실전 시뮬레이션",
-      "회식 에티켓 및 직장 동료와의 자연스러운 스몰토크 노하우",
-    ],
-    format: "1:1 대면 방문 / 온라인 Zoom / 기업 사내 단체 출강",
-    accent: "border-blue-500/30",
-  },
-  {
-    title: "TOPIK I · II 고득점 단기 합격반",
-    badge: "유학생 / 취업 준비생",
-    target: "국내 대학(원) 진학 및 E-7 비자, 영주권 취득을 준비하는 분",
-    features: [
-      "최신 5개년 기출 경향 분석 및 빈출 어휘·문법 압축 마스터",
-      "가장 점수가 안 나오는 53·54번 쓰기(작문) 1:1 첨삭 지도",
-      "실전 모의고사 풀이 및 시간 분배 테크닉 집중 훈련",
-    ],
-    format: "주 2~3회 집중 과외 + 매주 작문 1:1 정밀 피드백",
-    accent: "border-indigo-500/50 bg-blue-950/20",
-  },
-  {
-    title: "K-컬처 연계 실전 일상 회화 & 발음 클리닉",
-    badge: "회화 중심 / 초·중급",
-    target: "K-드라마·K-POP 팬 및 한국 생활 적응이 필요한 외국인 거주자",
-    features: [
-      "한국인이 실제 사용하는 트렌디한 자연스러운 구어체 표현 습득",
-      "외국인이 가장 어려워하는 평음·경음·격음(ㄱ-ㄲ-ㅋ) 조음 위치 정밀 교정",
-      "상황별 롤플레잉(식당, 병원, 은행, 부동산, 여행 등) 체험형 수업",
-    ],
-    format: "1:1 맞춤 진도 or 2~3인 소그룹 회화 클래스",
-    accent: "border-blue-500/30",
-  },
-]
 
 // 지도 실적 및 특징
 const TEACHING_POINTS = [
@@ -139,64 +101,8 @@ export default function KoreanPage() {
           </div>
         </section>
 
-        {/* 2. 3대 교육 과정 */}
-        <section id="courses" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
-              Curriculum
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-              수강생 목적별 체계적 교육 과정
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base font-medium">
-              비즈니스 실무부터 자격증 시험, 일상 대화까지 최적화된 로드맵을 제시합니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {KOREAN_COURSES.map((course, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-                      {course.badge}
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
-                      {course.title}
-                    </h3>
-                    <div className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
-                      🎯 대상: {course.target}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      주요 커리큘럼 특징
-                    </div>
-                    <ul className="space-y-2">
-                      {course.features.map((item, fIdx) => (
-                        <li key={fIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
-                          <span className="text-sky-600 font-bold">✓</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-200 text-xs text-sky-800 font-bold bg-sky-50 p-3 rounded-xl border border-sky-100">
-                  📌 수업 방식: {course.format}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* 2. 3대 교육 과정 (우수학생 & 교육과정 사진 등록·수시 변경 관리) */}
+        <KoreanCoursesSection />
 
         {/* 2-1. 기존 K-Lingo 스마트 한국어 에듀테크 플랫폼 통합 섹션 */}
         <KoreanTutorIntegration />
