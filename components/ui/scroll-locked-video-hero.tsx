@@ -122,68 +122,53 @@ export default function MetroHero({
       video.currentTime = t
     }
 
-    // 화면 스크롤 잠금 (비디오 개폐 인터랙션 전용)
+    // 화면 스크롤 잠금 및 해제 상태 관리 (body position fixed 제거하여 네이티브 스크롤 파괴 방지)
     function engageLock() {
-      if (locked || typeof document === "undefined") return
       locked = true
-      lockedScrollY = window.scrollY
-      const b = document.body.style
-      b.position = "fixed"
-      b.top = `-${lockedScrollY}px`
-      b.left = "0"
-      b.right = "0"
-      b.width = "100%"
-      b.height = "100%"
-      b.overscrollBehavior = "none"
       setIsUnlocked(false)
     }
 
-    // 화면 스크롤 잠금 해제 (문이 다 열린 후 본문 내용을 볼 수 있게 이동 허용)
     function releaseLock() {
-      if (!locked || typeof document === "undefined") return
       locked = false
-      const y = lockedScrollY
-      const b = document.body.style
-      b.position = ""
-      b.top = ""
-      b.left = ""
-      b.right = ""
-      b.width = ""
-      b.height = ""
-      b.overscrollBehavior = ""
-      window.scrollTo(0, y)
       setIsUnlocked(true)
     }
 
     // 초기 진입 시 최상단이면 잠금 활성화
     if (window.scrollY <= 10) {
       engageLock()
+    } else {
+      targetProgress = 1
+      currentProgress = 1
+      releaseLock()
     }
 
+    // 휠/터치 델타값 처리 함수
     function addDelta(deltaY: number): boolean {
       // 1. 문이 열리는 중 (아래로 휠)
       if (deltaY > 0) {
-        if (targetProgress < 0.99) {
+        if (targetProgress < 0.98) {
           targetProgress = clamp(targetProgress + deltaY / scrubDistance, 0, 1)
           if (targetProgress > 0.001) hasStartedScrolling = true
-          return true
+          return true // 문이 열리는 동안에는 스크롤 가로채기
         } else {
-          // 문이 끝까지 열림 -> 스크롤 락 해제하여 본문으로 내려갈 수 있도록 언락!
+          // 문이 100% 열림 -> 스크롤 락 즉시 해제하여 본문으로 부드럽게 스크롤 허용!
           if (locked) {
             releaseLock()
           }
-          return false
+          return false // 본문으로 자연스럽게 스크롤 통과
         }
       }
 
-      // 2. 문이 닫히는 중 (위로 휠): 페이지 최상단일 때 문을 다시 닫음
-      if (deltaY < 0) {
-        if (window.scrollY <= 10) {
-          if (!locked) {
+      // 2. 문이 닫히는 중 (위로 휠): 페이지 맨 위(scrollY === 0)에 완전히 도달했을 때만 작동
+      if (deltaY < -15) {
+        if (window.scrollY <= 5) {
+          if (!locked && targetProgress >= 0.95) {
             engageLock()
           }
-          targetProgress = clamp(targetProgress + deltaY / scrubDistance, 0, 1)
-          return targetProgress > 0
+          if (locked) {
+            targetProgress = clamp(targetProgress + deltaY / scrubDistance, 0, 1)
+            return targetProgress > 0
+          }
         }
       }
 
@@ -191,8 +176,8 @@ export default function MetroHero({
     }
 
     const onWheel = (e: WheelEvent) => {
-      // 최상단이거나 문이 아직 다 안 열렸을 때 휠 제어
-      if (window.scrollY <= 10 || locked) {
+      // 최상단이거나 문이 아직 완전히 열리지 않았을 때 비디오 스크러빙
+      if (window.scrollY <= 5 || targetProgress < 0.98) {
         if (addDelta(e.deltaY)) {
           e.preventDefault()
         }
@@ -207,17 +192,17 @@ export default function MetroHero({
       const deltaY = touchStartY - y
       touchStartY = y
 
-      if (window.scrollY <= 10 || locked) {
+      if (window.scrollY <= 5 || targetProgress < 0.98) {
         if (addDelta(deltaY)) {
           e.preventDefault()
         }
       }
     }
 
-    // 최상단으로 다시 스크롤해 올라왔을 때 감지하여 재잠금 준비
+    // 스크롤 이벤트 감지
     const onScroll = () => {
-      if (window.scrollY <= 5 && !locked && targetProgress >= 0.95) {
-        // 사용자가 다시 최상단으로 올라온 상태
+      if (window.scrollY <= 2 && targetProgress >= 0.98) {
+        // 맨 위로 복귀한 상태
       }
     }
 
@@ -272,6 +257,18 @@ export default function MetroHero({
       rafId = requestAnimationFrame(frame)
     }
 
+    // 전역 함수로 버튼 클릭 시 강제 문 열기 지원
+    ;(window as unknown as { __openTheGrimDoors?: () => void }).__openTheGrimDoors = () => {
+      targetProgress = 1
+      releaseLock()
+    }
+
+    ;(window as unknown as { __closeTheGrimDoors?: () => void }).__closeTheGrimDoors = () => {
+      targetProgress = 0
+      engageLock()
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
     return () => {
       video.removeEventListener("loadeddata", onLoadedData)
       video.removeEventListener("seeked", onSeeked)
@@ -288,11 +285,28 @@ export default function MetroHero({
 
   // 문이 다 열린 후 본문 영역으로 부드럽게 스크롤 이동
   const handleScrollDown = () => {
-    const nextSection = document.getElementById("services")
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth" })
-    } else {
-      window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+    // 1. 문을 100% 열기
+    if (typeof window !== "undefined") {
+      const openFn = (window as unknown as { __openTheGrimDoors?: () => void }).__openTheGrimDoors
+      if (openFn) openFn()
+    }
+
+    // 2. 본문 섹션으로 부드럽게 스크롤 이동
+    setTimeout(() => {
+      const nextSection = document.getElementById("services")
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth" })
+      } else {
+        window.scrollBy({ top: window.innerHeight, behavior: "smooth" })
+      }
+    }, 100)
+  }
+
+  // 문 다시 닫기
+  const handleCloseDoors = () => {
+    if (typeof window !== "undefined") {
+      const closeFn = (window as unknown as { __closeTheGrimDoors?: () => void }).__closeTheGrimDoors
+      if (closeFn) closeFn()
     }
   }
 

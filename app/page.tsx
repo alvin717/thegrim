@@ -18,7 +18,7 @@ export default function Home() {
         tagline="공간부터 디지털까지, 삶의 가치를 높입니다."
         scrollHint="SCROLL TO OPEN"
         signature={{ name: "The Grim Studio", url: "#" }}
-        scrubDistance={2400}
+        scrubDistance={1400}
       />
 
       {/* 2. 4대 전문 영역(Core Services) 인터랙티브 섹션 */}
