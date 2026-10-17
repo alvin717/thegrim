@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import FloatingContactBar from "@/components/floating-contact-bar"
 import ContactSection from "@/components/contact-section"
+import GolfCurriculumSection from "@/components/golf-curriculum-section"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -11,48 +12,6 @@ export const metadata: Metadata = {
     "KPGA 준회원 직강! 초고속 스윙 궤도 분석을 통해 부상 없이 비거리를 늘리고 슬라이스를 잡는 1:1 맞춤 골프 코칭",
 }
 
-// 3대 핵심 레슨 프로그램
-const LESSON_PROGRAMS = [
-  {
-    title: "골린이 8주 완성 입문 마스터",
-    badge: "입문 / 초급 추천",
-    target: "처음 골프채를 잡는 비기너 & 기초가 흔들리는 초보 골퍼",
-    duration: "총 8주 (주 2회, 회당 50분)",
-    keyPoints: [
-      "각자 체형에 맞는 자연스러운 뉴트럴 그립 & 어드레스 정립",
-      "똑딱이 탈출 후 7번 아이언 및 드라이버 풀스윙 폼 완성",
-      "골프 룰, 에티켓, 필드 기본 소양 원스톱 교육",
-    ],
-    outcome: "8주 후 첫 머리 올리기(정규 홀 라운드) 완벽 준비",
-    accent: "border-emerald-500/30",
-  },
-  {
-    title: "슬라이스 탈출 & 비거리 +20m 파워 임팩트",
-    badge: "가장 높은 수강 만족도",
-    target: "고질적인 우측 슬라이스나 비거리 정체로 고민하는 아마추어",
-    duration: "총 4~6주 (주 1~2회 집중 교정)",
-    keyPoints: [
-      "아웃-인 궤도를 인-아웃 드로우 구질로 전환하는 릴리즈 드릴",
-      "지면 반발력과 힙 턴을 활용한 폭발적인 헤드 스피드 생성",
-      "임팩트 구간에서의 척추각 유지 및 핸드퍼스트 타격 교정",
-    ],
-    outcome: "드라이버 비거리 평균 20~30m 증가 & 페어웨이 안착률 급상승",
-    accent: "border-teal-500/50 bg-emerald-950/20",
-  },
-  {
-    title: "싱글 진입 숏게임 & 18홀 필드 매니지먼트",
-    badge: "중·상급자 필독 코스",
-    target: "보기 플레이어(80~90대 타수)에서 70대 싱글 타수를 노리는 분",
-    duration: "원포인트 + 18홀 필드 동반 레슨",
-    keyPoints: [
-      "30~70m 거리별 웨지 거리감 세분화 및 핀 하이 공략",
-      "벙커 탈출 원샷 공식 및 그린 주변 로우 리스크 어프로치",
-      "트러블 라이(경사지) 탈출 샷 및 바람/핀 위치 코스 전략",
-    ],
-    outcome: "스코어를 잃지 않는 단단한 위기관리 능력 및 라베(라이프 베스트) 달성",
-    accent: "border-emerald-500/30",
-  },
-]
 
 // 스윙 교정 전/후 데이터
 const STATS_BEFORE_AFTER = [
@@ -147,65 +106,8 @@ export default function GolfPage() {
           </div>
         </section>
 
-        {/* 2. 3대 레슨 커리큘럼 프로그램 */}
-        <section id="programs" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
-              Curriculum
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-              골퍼의 목표별 맞춤 레슨 코스
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base font-medium">
-              단순 반복 연습이 아닌, 스윙 메커니즘의 원리를 깨우치는 과학적인 수업입니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {LESSON_PROGRAMS.map((program, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-                      {program.badge}
-                    </span>
-                    <span className="text-xs text-slate-500 font-semibold">{program.duration}</span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
-                      {program.title}
-                    </h3>
-                    <div className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
-                      🎯 추천: {program.target}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      핵심 트레이닝 내용
-                    </div>
-                    <ul className="space-y-2">
-                      {program.keyPoints.map((point, pIdx) => (
-                        <li key={pIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
-                          <span className="text-sky-600 font-bold">✓</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-200 text-xs text-sky-800 font-bold bg-sky-50 p-3 rounded-xl border border-sky-100">
-                  🏆 목표 성과: {program.outcome}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* 2. 3대 레슨 커리큘럼 & 영상 플레이어 (프로 직강 및 회원 스윙 영상 업로드·수시 변경 관리) */}
+        <GolfCurriculumSection />
 
         {/* 3. 스윙 데이터 분석 및 실제 교정 후기 */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
