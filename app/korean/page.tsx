@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import FloatingContactBar from "@/components/floating-contact-bar"
 import ContactSection from "@/components/contact-section"
+import KoreanTutorIntegration from "@/components/korean-tutor-integration"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -196,6 +197,9 @@ export default function KoreanPage() {
             ))}
           </div>
         </section>
+
+        {/* 2-1. 기존 K-Lingo 스마트 한국어 에듀테크 플랫폼 통합 섹션 */}
+        <KoreanTutorIntegration />
 
         {/* 3. 지도 철학 및 차별점 */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
