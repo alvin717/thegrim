@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import FloatingContactBar from "@/components/floating-contact-bar"
 import ContactSection from "@/components/contact-section"
+import DevAppsMarketplace from "@/components/dev-apps-marketplace"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -10,46 +11,6 @@ export const metadata: Metadata = {
   description:
     "Next.js, TypeScript 기반의 초고속 반응형 웹 구축! 브랜드 홈페이지부터 예약 시스템, 업무 자동화 관리자 툴까지 원스톱 풀스택 개발",
 }
-
-// 3대 개발 서비스 솔루션
-const DEV_SOLUTIONS = [
-  {
-    title: "하이엔드 반응형 브랜드 홈페이지",
-    badge: "브랜딩 & 랜딩페이지",
-    target: "전문직, 인테리어/건축, 학원, 병원, 쇼룸 등 고품격 웹사이트가 필요한 기업",
-    features: [
-      "스마트폰·태블릿·PC 어디서나 완벽한 모바일 퍼스트 반응형 레이아웃",
-      "검색엔진 최적화(SEO) 및 네이버·구글 포털 사이트 상위 노출 구조",
-      "방문자의 이탈을 방지하고 상담/전화 전환율을 극대화하는 UX 설계",
-    ],
-    tech: "Next.js · Tailwind CSS · Vercel 배포",
-    accent: "border-purple-500/30",
-  },
-  {
-    title: "예약 · 결제 · 고객 마이페이지 웹 앱",
-    badge: "웹 애플리케이션 시스템",
-    target: "고객 관리, 상담 접수, 온라인 클래스, 수강생 과제 제출 시스템이 필요한 서비스",
-    features: [
-      "카카오 3초 간편 로그인 및 구글·이메일 소셜 인증 연동",
-      "고객별 마이페이지(의뢰 현황, 자료 다운로드, 피드백 게시판)",
-      "수파베이스(Supabase) 클라우드 DB 연동으로 안전한 데이터 암호화",
-    ],
-    tech: "Next.js · Supabase DB · Auth · REST API",
-    accent: "border-pink-500/50 bg-purple-950/20",
-  },
-  {
-    title: "1인 기업 & 자영업자 업무 자동화 관리자 툴",
-    badge: "업무 생산성 극대화",
-    target: "엑셀 수작업을 줄이고 실시간 고객 접수와 통계를 한눈에 관리하고 싶은 대표님",
-    features: [
-      "접수된 고객 데이터 실시간 대시보드 및 원클릭 엑셀(CSV) 다운로드",
-      "관리자 전용 PIN 잠금 보안 시스템 탑재",
-      "반복 수작업을 없애주는 맞춤형 자동화 스크립트 구축",
-    ],
-    tech: "Admin Dashboard · 자동화 스크립트 · 통계 차트",
-    accent: "border-purple-500/30",
-  },
-]
 
 // 풀스택 개발 프로세스
 const DEV_PROCESS = [
@@ -152,64 +113,8 @@ export default function DevPage() {
           </div>
         </section>
 
-        {/* 2. 3대 핵심 개발 솔루션 */}
-        <section id="solutions" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-xs font-bold text-sky-700 tracking-widest uppercase">
-              Solutions
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900">
-              제작 가능한 주요 개발 분야
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base font-medium">
-              단순 소개형 홈페이지부터 복잡한 기능의 고객 관리 웹 애플리케이션까지 모두 가능합니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {DEV_SOLUTIONS.map((sol, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl bg-white/85 border border-slate-200/90 hover:border-sky-400 transition-all duration-300 p-6 sm:p-7 flex flex-col justify-between space-y-6 group hover:-translate-y-1 shadow-md backdrop-blur-md"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
-                      {sol.badge}
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-sky-700 transition-colors">
-                      {sol.title}
-                    </h3>
-                    <div className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
-                      🎯 추천 대상: {sol.target}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                      핵심 탑재 기술 & 기능
-                    </div>
-                    <ul className="space-y-2">
-                      {sol.features.map((feat, fIdx) => (
-                        <li key={fIdx} className="text-xs text-slate-700 font-medium flex items-start gap-2">
-                          <span className="text-sky-600 font-bold">✓</span>
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-200 text-xs text-sky-800 font-bold bg-sky-50 p-3 rounded-xl border border-sky-100">
-                  ⚙️ 핵심 스택: {sol.tech}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* 2. 회원 전용 소프트웨어 & 앱 다운로드 스토어 */}
+        <DevAppsMarketplace />
 
         {/* 3. 5단계 체계적 개발 프로세스 */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-200 bg-white/70 backdrop-blur-md rounded-3xl my-10 shadow-sm border">
