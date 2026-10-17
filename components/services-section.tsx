@@ -222,10 +222,14 @@ export default function ServicesSection() {
                     ? "/korean"
                     : "/dev"
                 }
-                className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-extrabold text-sm hover:bg-zinc-200 transition-all shadow-md active:scale-[0.98] min-h-[44px] flex items-center gap-2 group"
+                className="chrome-capsule-btn group"
               >
-                <span>{activeService.category.split("&")[0].trim()} 전용관 바로가기</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                <span className="chrome-sparkle-left" />
+                <span className="chrome-sparkle-right" />
+                <span className="chrome-capsule-inner px-6 py-3 text-xs sm:text-sm font-extrabold">
+                  <span>{activeService.category.split("&")[0].trim()} 전용관 바로가기</span>
+                  <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
+                </span>
               </Link>
 
               <button

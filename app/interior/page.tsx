@@ -119,14 +119,18 @@ export default function InteriorPage() {
           <div className="pt-4 flex flex-wrap justify-center gap-4">
             <a
               href="#portfolio"
-              className="px-6 py-3.5 rounded-xl bg-white text-zinc-950 font-bold text-sm hover:bg-zinc-200 transition-all shadow-lg active:scale-95 min-h-[44px] flex items-center gap-2"
+              className="chrome-capsule-btn group"
             >
-              <span>시공 포트폴리오 둘러보기</span>
-              <span>↓</span>
+              <span className="chrome-sparkle-left" />
+              <span className="chrome-sparkle-right" />
+              <span className="chrome-capsule-inner px-7 py-3 text-sm">
+                <span>시공 포트폴리오 둘러보기</span>
+                <span className="text-zinc-400 group-hover:translate-y-0.5 transition-transform font-bold">↓</span>
+              </span>
             </a>
             <a
               href="#contact"
-              className="px-6 py-3.5 rounded-xl bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[44px] flex items-center gap-2"
+              className="px-6 py-3.5 rounded-full bg-zinc-850 hover:bg-zinc-800 text-white font-bold text-sm border border-zinc-700 transition-all min-h-[46px] flex items-center gap-2"
             >
               <span>실시간 견적 & 상담 신청</span>
               <span>→</span>

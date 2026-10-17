@@ -130,10 +130,14 @@ export default function Navbar() {
           ) : (
             <Link
               href="/login"
-              className="px-4 py-2 rounded-full bg-white text-zinc-950 hover:bg-zinc-200 text-xs font-extrabold transition-all shadow-md active:scale-95 flex items-center gap-1.5 min-h-[38px]"
+              className="chrome-capsule-btn !min-h-[38px] group"
             >
-              <span>고객 / 수강생 로그인</span>
-              <span>→</span>
+              <span className="chrome-sparkle-left !left-[8%] !w-3 !h-1" />
+              <span className="chrome-sparkle-right !right-[15%] !w-3 !h-1" />
+              <span className="chrome-capsule-inner !px-4 !py-1.5 !text-xs font-bold">
+                <span>고객 / 수강생 로그인</span>
+                <span className="text-zinc-400 group-hover:translate-x-0.5 transition-transform">→</span>
+              </span>
             </Link>
           )}
 

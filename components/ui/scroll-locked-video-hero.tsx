@@ -417,17 +417,22 @@ export default function MetroHero({
             {tagline}
           </span>
 
-          {/* 문 열림 완료 후 본문으로 바로 스크롤해 내려갈 수 있는 안내 버튼 */}
-          <div className="mt-6 flex flex-col items-center gap-2 pointer-events-auto">
+          {/* 문 열림 완료 후 본문으로 바로 스크롤해 내려갈 수 있는 럭셔리 크롬 알약 버튼 */}
+          <div className="mt-8 flex flex-col items-center gap-3 pointer-events-auto">
             <button
               onClick={handleScrollDown}
-              className="px-6 py-3 rounded-full bg-white/90 hover:bg-white text-zinc-950 font-bold text-xs tracking-wider transition-all shadow-2xl hover:scale-105 active:scale-95 flex items-center gap-2"
+              className="chrome-capsule-btn group"
             >
-              <span>포트폴리오 내용 둘러보기</span>
-              <span>↓</span>
+              {/* 크롬 반사 스파클 광택 */}
+              <span className="chrome-sparkle-left" />
+              <span className="chrome-sparkle-right" />
+              <span className="chrome-capsule-inner px-8 py-3.5 text-xs sm:text-sm tracking-widest uppercase">
+                <span>포트폴리오 내용 둘러보기</span>
+                <span className="text-zinc-400 group-hover:translate-y-0.5 transition-transform font-bold">↓</span>
+              </span>
             </button>
-            <span className="text-[11px] text-zinc-400 font-mono">
-              (마우스 휠을 계속 내리시면 바로 아래 내용으로 이어집니다)
+            <span className="text-[11px] text-zinc-400 font-mono tracking-tight">
+              (마우스 휠을 내리시거나 버튼을 누르면 본문으로 이어집니다)
             </span>
           </div>
         </div>

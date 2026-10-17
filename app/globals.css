@@ -130,3 +130,97 @@
     overflow-x: hidden;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   럭셔리 메탈릭 크롬 알약 버튼 (Chrome Capsule Glass Button)
+   - 첨부 이미지 기반: 유려한 실버 크롬 더블 림 + 다크 렌즈 그라데이션 + 스파클 광택
+───────────────────────────────────────────────────────────── */
+.chrome-capsule-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(200, 210, 225, 0.6) 35%,
+    rgba(60, 65, 75, 0.3) 65%,
+    rgba(230, 240, 255, 0.9) 100%
+  );
+  box-shadow: 
+    0 12px 28px -4px rgba(0, 0, 0, 0.9),
+    0 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  min-height: 46px;
+}
+
+.chrome-capsule-btn:hover {
+  transform: translateY(-1.5px) scale(1.015);
+  box-shadow: 
+    0 16px 36px -4px rgba(0, 0, 0, 0.95),
+    0 0 20px 2px rgba(255, 255, 255, 0.35),
+    inset 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.chrome-capsule-btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.chrome-capsule-inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  padding: 0.65rem 1.75rem;
+  background: linear-gradient(
+    180deg,
+    #1d2129 0%,
+    #12151c 45%,
+    #0a0c10 75%,
+    #05070a 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 0 2px 3px rgba(255, 255, 255, 0.18),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  color: #f1f4f8;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+/* 반짝이는 메탈릭 스파클 하이라이트 (좌측 10시 방향) */
+.chrome-sparkle-left {
+  position: absolute;
+  top: -2px;
+  left: 10%;
+  width: 16px;
+  height: 8px;
+  background: radial-gradient(ellipse at center, #ffffff 40%, rgba(255, 255, 255, 0) 75%);
+  filter: drop-shadow(0 0 5px #ffffff);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 반짝이는 메탈릭 스파클 하이라이트 (상단 중앙 우측 1시 방향) */
+.chrome-sparkle-right {
+  position: absolute;
+  top: -2px;
+  right: 22%;
+  width: 20px;
+  height: 8px;
+  background: radial-gradient(ellipse at center, #ffffff 45%, rgba(255, 255, 255, 0) 75%);
+  filter: drop-shadow(0 0 6px #ffffff);
+  pointer-events: none;
+  z-index: 2;
+}
