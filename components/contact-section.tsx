@@ -224,17 +224,44 @@ export default function ContactSection() {
           </form>
         )}
 
-        {/* 다이렉트 긴급 문의 배너 */}
-        <div className="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-          <div>
-            ⚡ 빠른 유선 상담이 필요하신가요? 직접 전화 연결도 가능합니다.
+        {/* 대표 직통 채널 빠른 연결 바 */}
+        <div className="mt-8 pt-6 border-t border-slate-200 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-700">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span><strong>더 그림 (THE GRIM) 대표/CEO 이승국</strong> 직통 소통 채널:</span>
+            </div>
+            <div className="text-slate-500 text-[11px]">
+              📍 경기도 화성시 새비봉동로 37
+            </div>
           </div>
-          <a
-            href="tel:010-0000-0000"
-            className="text-sky-700 hover:text-sky-900 font-bold underline underline-offset-4 flex items-center gap-1.5 min-h-[44px]"
-          >
-            <span>📞 전화 바로 걸기 (010-0000-0000)</span>
-          </a>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <a
+              href="tel:010-7533-9193"
+              className="px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 min-h-[44px] shadow-sm active:scale-98"
+            >
+              <span>📞 직통 전화 (010-7533-9193)</span>
+            </a>
+
+            <a
+              href="https://open.kakao.com/o/gBFGomDi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 rounded-xl bg-amber-400 hover:bg-amber-500 text-slate-900 font-extrabold text-xs transition-all flex items-center justify-center gap-2 min-h-[44px] shadow-sm active:scale-98"
+            >
+              <span>💬 카카오톡 1:1 오픈채팅</span>
+            </a>
+
+            <a
+              href="https://blog.naver.com/ddasmee63"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition-all flex items-center justify-center gap-2 min-h-[44px] shadow-sm active:scale-98"
+            >
+              <span>📗 네이버 공식 블로그 방문</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

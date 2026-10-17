@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar";
 import MetroHero from "@/components/ui/scroll-locked-video-hero";
 import ServicesSection from "@/components/services-section";
 import ProofSection from "@/components/proof-section";
+import CeoProfileCard from "@/components/ceo-profile-card";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import FloatingContactBar from "@/components/floating-contact-bar";
@@ -34,13 +35,16 @@ export default function Home() {
         {/* 3. 성과 및 포트폴리오 갤러리(Proof) 섹션 (3번 이미지 배경 연동) */}
         <ProofSection />
 
-        {/* 4. 프로젝트 의뢰 & 1:1 레슨 상담 신청 폼(Contact Form) (3번 이미지 배경 연동) */}
+        {/* 4. 더 그림 대표(CEO) 공식 프로필 & 직통 소통 채널 카드 */}
+        <CeoProfileCard />
+
+        {/* 5. 프로젝트 의뢰 & 1:1 레슨 상담 신청 폼(Contact Form) (3번 이미지 배경 연동) */}
         <ContactSection />
 
-        {/* 5. 공식 푸터(Footer) */}
+        {/* 6. 공식 푸터(Footer) */}
         <Footer />
 
-        {/* 6. 모바일 퍼스트 하단 플로팅 전화/상담 바 */}
+        {/* 7. 모바일 퍼스트 하단 플로팅 전화/상담 바 */}
         <FloatingContactBar />
       </div>
     </div>
