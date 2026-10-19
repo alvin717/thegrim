@@ -133,13 +133,22 @@ export default function MetroHero({
       setIsUnlocked(true)
     }
 
-    // 초기 진입 시 최상단이면 잠금 활성화
+    const isMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 768 || "ontouchstart" in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0));
+
+    // 초기 진입 시: PC는 휠 스크러빙을 위해 잠금, 모바일은 첫 터치부터 부드럽게 스크롤되도록 열어둠
     if (window.scrollY <= 10) {
-      engageLock()
+      if (!isMobile) {
+        engageLock();
+      } else {
+        locked = false;
+        setIsUnlocked(true);
+      }
     } else {
-      targetProgress = 1
-      currentProgress = 1
-      releaseLock()
+      targetProgress = 1;
+      currentProgress = 1;
+      releaseLock();
     }
 
     // 휠/터치 델타값 처리 함수
@@ -165,6 +174,7 @@ export default function MetroHero({
 
       // 2. 문이 닫히는 중 (위로 휠): 페이지 맨 위(scrollY === 0)에 완전히 도달했을 때만 작동
       if (deltaY < -20) {
+        if (isMobile) return false; // 모바일에서는 본문 스크롤 도중 대문이 다시 잠기며 버벅거리지 않도록 방지
         if (window.scrollY <= 5) {
           if (!locked && targetProgress >= 0.95) {
             engageLock()
@@ -203,21 +213,27 @@ export default function MetroHero({
       const deltaY = touchStartY - y
       touchStartY = y
 
-      // 모바일 스마트폰 터치 감도 안정화 (0.4배 적용):
-      // 스마트폰에서는 손가락 스와이프 한 번에 수백 px 델타가 전달되어
-      // 대문이 너무 순식간에 열리는 현상을 방지하고 고급스러운 개폐 속도 유지
-      const touchDelta = deltaY * 0.4
+      // [모바일 스마트폰 최적화]
+      // 사용자가 아래로 스크롤하려고 손가락을 올리는 순간(deltaY > 6),
+      // 스크롤을 막지 않고(e.preventDefault 차단 안 함) 대문이 스르륵 부드럽게 열리며 본문으로 매끄럽게 통과합니다.
+      if (isMobile) {
+        if (deltaY > 6) {
+          targetProgress = 1
+          hasStartedScrolling = true
+          releaseLock()
+        }
+        return // 모바일에서는 네이티브 관성 스크롤을 가로채지 않아 0초만에 즉각 스크롤 반응
+      }
 
+      // 데스크톱 터치스크린 등 일반 환경:
+      const touchDelta = deltaY * 1.0
       if (targetProgress < 0.98) {
-        // 문이 열리는 도중에는 터치로 비디오 스크러빙하며 페이지 스크롤 차단
         if (addDelta(touchDelta)) {
           if (e.cancelable) {
             e.preventDefault()
           }
         }
       } else {
-        // 문이 완전히 열린 후에는 페이지 본문(섹션들)으로 자유롭게 스크롤 내려갈 수 있도록 허용!
-        // 단, 최상단(scrollY <= 5)에서 명확하게 아래로 끌어내리는 제스처(deltaY < -40)일 때만 문 닫기 동작
         if (window.scrollY <= 5 && deltaY < -40) {
           if (addDelta(touchDelta)) {
             if (e.cancelable) {
